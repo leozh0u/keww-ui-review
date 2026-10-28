@@ -1,0 +1,1 @@
+const target=document.querySelector('meta[name=preview-redirect]')?.content;if(target?.startsWith('/'))location.replace(target+location.search+location.hash);

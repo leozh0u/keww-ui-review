@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+# This preview/staging site uses HTML noindex and must not receive search traffic.
