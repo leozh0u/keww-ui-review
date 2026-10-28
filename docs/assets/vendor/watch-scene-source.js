@@ -122,12 +122,25 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
     } catch { fail(); }
   }
   function schedule() { if (!frame && active && visible && !document.hidden) frame = requestAnimationFrame(render); }
+  function onContextLost(event) {
+    event.preventDefault();
+    // A delayed event from an intentionally retired canvas cannot fail a newer scene.
+    if (event.currentTarget !== renderer?.domElement) return;
+    fail();
+  }
   function release() {
     active = false; cancelAnimationFrame(frame); frame = 0; stage.classList.remove('is-ready');
+    const previous = renderer; renderer = null;
+    stage.dataset.watchRendering = 'poster';
+    previous?.domElement.removeEventListener('webglcontextlost', onContextLost);
     resizeObserver?.disconnect(); resizeObserver = null;
     for (const item of resources) item.dispose(); resources.clear();
     environment?.dispose(); environment = null;
-    renderer?.dispose(); renderer?.domElement.remove(); renderer = null;
+    if (previous) {
+      // dispose() releases Three.js resources, but the browser's context needs its own teardown.
+      if (!previous.getContext().isContextLost()) previous.forceContextLoss();
+      previous.dispose(); previous.domElement.remove();
+    }
     scene = camera = watch = texture = null;
   }
   function fail() { failed = true; stage.dataset.watchRendering = 'poster'; release(); }
@@ -137,7 +150,7 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
       renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: 'low-power', stencil: false });
       renderer.outputColorSpace = THREE.SRGBColorSpace; renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.25;
       renderer.setClearColor(0x000000, 0); renderer.domElement.className = 'watch-canvas'; renderer.domElement.setAttribute('aria-hidden', 'true');
-      renderer.domElement.addEventListener('webglcontextlost', event => { event.preventDefault(); fail(); }, { once: true });
+      renderer.domElement.addEventListener('webglcontextlost', onContextLost);
       stage.append(renderer.domElement);
       scene = new THREE.Scene(); camera = new THREE.OrthographicCamera(-4, 4, 4, -4, .1, 30); camera.position.set(0, 0, 12);
       const pmrem = new THREE.PMREMGenerator(renderer), room = new RoomEnvironment();

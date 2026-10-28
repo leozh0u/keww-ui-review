@@ -17,3 +17,13 @@ Tina's supplied KEWW colours; the existing local font is provisional.
 Three.js is MIT licensed; its notice ships in docs/assets/vendor/three-LICENSE.txt.
 The translated watch stills are code-rendered from the same authored scene, not
 photographs of verified supplied hardware or private Figma exports.
+
+The homepage distinguishes contingent staffing, workforce software for an existing
+team and industry add-ons, with Kasheww as the catering pilot. Bold worker entry
+opens the review application, which links the current live KEWW application for
+real submissions. The static review itself still sends nothing.
+
+The overhead event-team illustration is AI-generated and labelled as illustrative.
+It is not actual staff/customer photography, verified device hardware or a live
+location-tracking view. Watch context cleanup includes an explicit GPU-context
+release on intentional teardown and ignores events from retired canvases.

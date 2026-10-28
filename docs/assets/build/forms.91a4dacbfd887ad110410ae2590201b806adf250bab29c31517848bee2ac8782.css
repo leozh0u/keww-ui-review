@@ -6,3 +6,5 @@
 @media(max-width:400px){.field-grid{grid-template-columns:1fr}.field{margin-bottom:20px}.form-actions{gap:10px}.form-page-heading h1{font-size:38px}}
 
 .required-marker{color:#9f1d32;font-weight:700;margin-inline-start:.25em}
+
+.review-application-link{font-size:14px;line-height:1.6;color:var(--muted);margin:-24px 0 32px;max-width:72ch}.review-application-link a{color:var(--purple);text-decoration:underline;font-weight:700}.review-application-link span{display:block}@media(max-width:680px){.review-application-link{margin:-10px 0 26px}}

@@ -67,6 +67,7 @@
   const papers = [...root.querySelectorAll('.document-sheet')];
   const photo = root.querySelector('.service-photograph');
   const image = photo.querySelector('img');
+  const photoClip = photo.querySelector('.event-floor-image') || photo;
   const visual = root.querySelector('.workflow-visual');
   let frame = 0;
   let current = 0;
@@ -74,7 +75,7 @@
   const clamp = value => Math.max(0, Math.min(1, value));
   function reset() {
     cancelAnimationFrame(frame); frame = 0;
-    [heroImage,sheet,ticket,...papers,photo,image,visual].forEach(el => el.removeAttribute('style'));
+    [heroImage,sheet,ticket,...papers,photoClip,image,visual].forEach(el => el.removeAttribute('style'));
   }
   function render() {
     frame = 0;
@@ -107,7 +108,7 @@
     });
     const b=photo.getBoundingClientRect();
     const reveal=clamp((innerHeight-b.top)/(innerHeight*.75));
-    photo.style.clipPath=`inset(${(1-reveal)*12}% ${(1-reveal)*4}% round 8px)`;
+    photoClip.style.clipPath=`inset(${(1-reveal)*12}% ${(1-reveal)*4}% round 8px)`;
     image.style.transform=`scale(${1.08-reveal*.08}) translateY(${(1-reveal)*18}px)`;
     if(Math.abs(target-current)>.0005)frame=requestAnimationFrame(render);
   }
