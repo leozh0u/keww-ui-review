@@ -216,3 +216,5 @@ html[lang=zh-CN] h1,html[lang=zh-CN] h2{letter-spacing:0;line-height:1.2}
 .platform .text-link{color:var(--paper)}
 @media(max-width:800px){.operations-intro{padding-block:56px}.operations-summary{gap:28px}.platform .product-watches{gap:32px}.platform .product-watches .watch-scene{height:590px}.product-kasheww{margin-top:80px}}
 @media(max-width:680px){.operations-intro{padding-block:46px}.operations-summary{grid-template-columns:1fr;gap:16px;margin-top:22px}.operations-summary p{font-size:17px}.platform .product-watches{grid-template-columns:1fr;gap:30px}.platform .product-watches .product-copy{grid-row:1}.platform .product-watches .watch-scene{height:clamp(300px,90vw,430px);position:static;max-width:100%}.product-kasheww{margin-top:64px}.service-handoff li{padding-block:16px}.service-handoff h3{font-size:17px}.product .service-handoff p{font-size:15px}.button-on-dark{width:100%;font-size:15px}}
+
+#watches{scroll-margin-top:28px}.watch-shortcut{margin-top:14px}
