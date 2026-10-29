@@ -69,20 +69,22 @@
   const image = photo.querySelector('img');
   const photoClip = photo.querySelector('.event-floor-image') || photo;
   const visual = root.querySelector('.workflow-visual');
+  const staffing = root.querySelector('.staffing-scenes');
+  const crewPhotos = [...staffing.querySelectorAll('img')];
   let frame = 0;
   let current = 0;
   let target = 0;
   const clamp = value => Math.max(0, Math.min(1, value));
   function reset() {
     cancelAnimationFrame(frame); frame = 0;
-    [heroImage,sheet,ticket,...papers,photoClip,image,visual].forEach(el => el.removeAttribute('style'));
+    [heroImage,sheet,ticket,...papers,photoClip,image,visual,...crewPhotos].filter(Boolean).forEach(el => el.removeAttribute('style'));
   }
   function render() {
     frame = 0;
     if (preference.matches || document.hidden) return;
     const h = hero.getBoundingClientRect();
     const hp = clamp(-h.top / Math.max(1,h.height));
-    heroImage.style.transform = `translateY(${hp*48}px) rotate(${-9+hp*15}deg) scale(${.97+hp*.08})`;
+    if (heroImage) heroImage.style.transform = `translateY(${hp*48}px) rotate(${-9+hp*15}deg) scale(${.97+hp*.08})`;
     const w = workflow.getBoundingClientRect();
     target = clamp((innerHeight*.4-w.top)/Math.max(1,w.height-innerHeight*.65));
     current += (target-current)*.18;
@@ -110,6 +112,9 @@
     const reveal=clamp((innerHeight-b.top)/(innerHeight*.75));
     photoClip.style.clipPath=`inset(${(1-reveal)*12}% ${(1-reveal)*4}% round 8px)`;
     image.style.transform=`scale(${1.08-reveal*.08}) translateY(${(1-reveal)*18}px)`;
+    const crew=staffing.getBoundingClientRect();
+    const cp=clamp((innerHeight-crew.top)/(innerHeight+crew.height));
+    crewPhotos.forEach((img,i)=>{img.style.transform=`translateY(${(cp-.5)*(i?-40:40)}px) rotate(${(cp-.5)*(i?-3:3)}deg)`;});
     if(Math.abs(target-current)>.0005)frame=requestAnimationFrame(render);
   }
   function schedule(){if(!frame&&!preference.matches)frame=requestAnimationFrame(render);}

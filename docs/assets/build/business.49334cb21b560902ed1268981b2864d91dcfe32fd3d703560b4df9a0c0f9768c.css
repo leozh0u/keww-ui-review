@@ -180,3 +180,16 @@
 @media(max-width:680px){.commercial-option{padding-block:20px}.commercial-option h3{font-size:19px}.commercial-option p{font-size:16px}.floor-zone{font-size:10px;padding:5px 7px}.floor-zone-0{left:6%;top:13%}.floor-zone-1{left:13%;top:52%}.floor-zone-2{left:64%;top:41%}.event-floor-scene figcaption{position:static;padding:10px 0 0;margin:0;background:none;border-radius:0;max-inline-size:none;font-size:11px}.service-photograph.event-floor-scene{aspect-ratio:auto;overflow:visible}.event-floor-scene img{height:auto;aspect-ratio:1672/941}.event-floor-scene .floor-zones{position:absolute;inset:0 0 25px}}
 
 .event-floor-image{position:relative;aspect-ratio:1672/941;overflow:hidden;border-radius:8px}.event-floor-scene .floor-zones{position:absolute;inset:0}
+/* The app leads the story. The watch is one connected chapter. */
+.business-hero{grid-template-columns:1fr 1.12fr;gap:24px 40px;padding-top:44px}
+.business-hero-copy{padding-block:24px}
+.business-hero h1{font-size:clamp(48px,5.05vw,74px);line-height:1.06}
+.hero-context{font-size:14px;padding-top:20px}
+.workflow-availability{font-size:12px;line-height:1.5;color:var(--muted);margin:24px 0 0;max-width:60ch}
+.staffing-scenes{position:relative;min-width:0;display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:center;padding-block:20px;overflow:clip}
+.staffing-scenes img{width:100%;height:340px;object-fit:cover;border-radius:6px}
+.staffing-scenes img:last-child{height:280px;margin-top:36px;object-position:50% 40%}
+@media(max-width:1100px){.business-hero{gap:28px}.business-hero h1{font-size:clamp(46px,5vw,64px)}}
+@media(max-width:800px){.business-hero{grid-template-columns:.9fr 1.1fr;gap:20px}.business-hero h1{font-size:43px}.staffing-scenes img{height:300px}.staffing-scenes img:last-child{height:250px}}
+@media(max-width:680px){.business-hero{grid-template-columns:1fr;padding-top:24px;gap:20px}.business-hero-copy{padding:0}.business-hero h1{font-size:clamp(44px,11.2vw,64px);max-width:14ch}.business-hero .hero-actions{margin-top:26px;gap:20px}.hero-context{padding-block:12px 20px;gap:16px;flex-wrap:wrap;justify-content:flex-start}.hero-context span{font-size:12px}.staffing-scenes{padding:0;gap:12px}.staffing-scenes img{height:260px;display:block}.staffing-scenes img:last-child{display:block;height:220px;margin-top:26px}.workflow-availability{margin-top:16px}}
+@media(prefers-reduced-motion:reduce){.staffing-scenes img{transform:none!important}}

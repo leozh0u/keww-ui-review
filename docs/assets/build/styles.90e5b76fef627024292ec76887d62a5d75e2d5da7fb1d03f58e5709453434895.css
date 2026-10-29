@@ -241,3 +241,10 @@ html{scrollbar-color:#65558F #F6F6F8}
 @media(max-width:370px){.header-tools{gap:6px}.utility-work{font-size:11px}.site-header .brand{font-size:21px;gap:6px}.brand-mark{width:30px;height:30px}.site-header .login{font-size:12px;padding-inline:8px}.navigation{gap:24px}}
 
 @media(max-width:370px){.header-inner{column-gap:8px;grid-template-columns:minmax(0,1fr) auto}.header-tools{gap:4px}.site-header .brand{font-size:20px;gap:5px}.brand-mark{width:28px;height:28px}.site-header .login span[aria-hidden]{display:none}.site-header .login{gap:0}}
+/* Worker access stays first in the navigation, beside the product routes. */
+.navigation .utility-work{font-size:14px;font-weight:700;background:var(--lavender);color:var(--purple);border-radius:6px;padding:10px 16px;min-height:44px;white-space:nowrap}
+.navigation .utility-work:hover{background:var(--border);text-decoration:none}
+@media(min-width:1001px){.navigation{gap:24px}.header-tools{gap:16px}.header-inner{gap:20px}}
+@media(max-width:1000px){.navigation{gap:24px}.navigation .utility-work{font-size:14px}}
+@media(max-width:680px){.navigation{gap:6px;justify-content:space-between;flex-wrap:wrap}.navigation .utility-work{font-size:13px;padding:10px 9px}.header-tools{gap:12px}}
+@media(max-width:370px){.navigation .utility-work{font-size:12px;padding-inline:7px}.navigation .nav-link{font-size:12px}.navigation{gap:4px}}

@@ -27,3 +27,15 @@ The overhead event-team illustration is AI-generated and labelled as illustrativ
 It is not actual staff/customer photography, verified device hardware or a live
 location-tracking view. Watch context cleanup includes an explicit GPU-context
 release on intentional teardown and ignores events from retired canvases.
+
+The homepage now leads with “Make better staffing decisions.” and an interactive
+KEWW app illustration. Staffing, Tasks and Hours views use fictional example
+records. Complete a sample task to see its source record and total change, then
+reset it. Four assigned crew account for32planned and30recorded examplehours.
+The watch remains a supporting workflow chapter. Availability text sits outside
+the animation. Bold Find Work is immediately before Watches and opens the
+localized application. No live data is fetched by the product illustration.
+
+App layers, data comparisons, documents and staff photographs use bounded native
+scroll motion. Tabs and local task actions work with a keyboard and reduced
+motion; all three example views remain readable without JavaScript.
