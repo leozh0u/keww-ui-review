@@ -46,3 +46,8 @@ interactive sample view, separating assignment, opening and completion records.
 An earlier service-photo section uses existing Cafe Natalie photographs with
 bounded scroll motion. These are illustrations and fictional records, not a
 claim of released native clients or live watch reporting.
+
+The latest opening uses “Make better decisions.”, leads with the watch and goes
+straight into the existing task-through-event sequence before the app/data and
+service-photo sections. The smaller laptop has a visible keyboard and trackpad;
+its lid opens with the initial scroll and remains open in static fallbacks.

@@ -109,12 +109,6 @@
 .product-action-status{font-size:12px;color:var(--purple);line-height:1.6;margin:12px 0;min-height:20px}
 /* A single product, shown across desktop, crew phone and watch. */
 .product-hero-scene{padding:30px 24px 42px;min-height:660px;justify-content:center;overflow:clip}
-.product-device-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px 32px;align-items:center;justify-items:center;position:relative;width:100%}
-.product-mac{grid-column:1/-1;position:relative;width:100%;border:7px solid var(--ink);border-top-width:13px;border-radius:14px 14px 3px 3px;background:var(--ink);transform:translateY(var(--product-hero-y,0px)) rotateY(var(--product-hero-angle,-6deg)) rotateZ(var(--product-hero-roll,-2deg));transform-origin:50% 80%;box-shadow:0 15px 35px #0c0c0c15}
-.product-mac-camera{position:absolute;top:-9px;left:50%;width:4px;height:4px;background:var(--muted);border-radius:50%}
-.product-mac .product-hero-window{transform:none;border:0;border-radius:4px 4px 0 0;box-shadow:none}
-.product-mac-base{position:absolute;top:100%;height:10px;left:-5%;width:110%;background:var(--border);border:1px solid var(--muted);border-top:0;border-radius:1px 1px 50% 50%}
-.product-mac-base::after{content:'';position:absolute;left:40%;top:0;width:20%;height:4px;border-radius:0 0 6px 6px;background:var(--muted)}
 .product-phone{width:165px;min-height:290px;position:relative;justify-self:end;background:var(--paper);border:6px solid var(--ink);border-radius:25px;padding:21px 12px 19px;box-shadow:0 12px 24px #0c0c0c15;transform:translate(var(--product-phone-x,-9px),var(--product-phone-y,0px)) rotate(var(--product-phone-angle,-7deg));}
 .product-phone-camera{position:absolute;top:6px;left:38%;width:24%;height:6px;background:var(--ink);border-radius:6px}
 .product-phone-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:19px;font-size:9px;font-weight:700}
@@ -130,8 +124,6 @@
 .product-phone-next{display:grid;gap:6px;margin-top:15px;padding-top:12px;border-top:1px solid var(--border)}
 .product-phone-next>strong{font-size:10px;line-height:1.4}
 .product-phone-home{position:absolute;bottom:6px;width:32%;height:3px;left:34%;background:var(--ink);border-radius:2px}
-.product-hero-watch{position:relative;width:175px;justify-self:start;transform:translate(var(--product-watch-x,8px),var(--product-watch-y,0px)) rotate(var(--product-watch-angle,7deg))}
-.product-hero-watch>img{width:100%;height:250px;object-fit:contain;display:block}
 .product-device-receipt{position:absolute;left:60%;bottom:25px;padding:11px 13px;background:var(--paper);border:1px solid var(--border);border-radius:5px;min-width:132px;box-shadow:0 8px 18px #0c0c0c10;transform:translateX(var(--product-receipt-x,0px));}
 .product-device-receipt>span{display:block;color:var(--muted);font-size:10px;line-height:1.4;white-space:nowrap}
 .product-device-receipt>strong{display:flex;align-items:center;gap:4px;color:var(--purple);font-size:12px;margin-top:6px}
@@ -144,13 +136,14 @@
 .product-activity-row>strong{font-weight:400}
 .product-activity-row:last-child{background:var(--lavender)}
 .product-activity-note{font-size:12px;line-height:1.6;color:var(--muted);margin:20px 0 4px}
-@media(max-width:1100px){.product-hero-scene{padding-inline:18px}.product-device-grid{gap:25px 16px}.product-phone{width:150px;min-height:285px;padding-inline:10px}.product-hero-watch{width:145px}.product-device-receipt{left:38%;bottom:6px;min-width:124px}.product-device-receipt>span{font-size:9px}}
-@media(max-width:680px){.product-hero-scene{min-height:0;padding:28px 18px 38px}.product-device-grid{gap:28px 10px;grid-template-columns:1fr 1fr}.product-mac{border-width:5px;border-top-width:11px;border-radius:10px 10px 2px 2px}.product-mac-camera{top:-8px}.product-mac .product-window-bar{font-size:9px;padding:10px;min-height:40px}.product-mac .product-wordmark{font-size:14px}.product-mac .product-hero-content{padding:14px 12px 8px}.product-mac .product-event-title strong{font-size:18px}.product-mac .product-event-title>span{font-size:10px}.product-mac .product-hero-coverage>strong{font-size:14px}.product-mac .product-roster-row{font-size:10px;gap:6px;padding:8px 0}.product-mac .product-status{font-size:9px;white-space:normal}.product-mac .product-hero-footer{font-size:10px}.product-mac .product-hero-footer a{font-size:10px;gap:4px}.product-phone{width:142px;min-height:279px;padding:20px 9px 18px;border-width:5px}.product-phone-title{font-size:18px}.product-phone-bar{margin-bottom:15px}.product-hero-watch{width:142px}.product-hero-watch>img{height:230px}.product-device-receipt{left:7px;right:0;bottom:-6px;min-width:0;padding:9px 10px}.product-device-receipt>strong{font-size:11px}.product-device-receipt>span{font-size:9px}.product-tabs{gap:15px}.product-activity-head,.product-activity-row{grid-template-columns:40px 1fr 65px;padding:17px 6px;gap:9px;font-size:12px}.product-activity-head{font-size:10px}.product-activity-row>span{font-size:10px}.product-activity-context{font-size:11px;gap:10px}.product-activity-note{font-size:11px}}
-@media(max-width:370px){.product-hero-scene{padding-inline:12px}.product-device-grid{gap:27px 8px}.product-phone{width:125px;min-height:279px;padding-inline:8px}.product-phone-title{font-size:16px}.product-phone-task>strong{font-size:12px}.product-hero-watch{width:119px}.product-hero-watch>img{height:218px}.product-device-receipt>span{font-size:8px}.product-mac .product-roster-row{font-size:9px}.product-mac .product-hero-footer a{font-size:9px}.product-mac .product-hero-footer>span{font-size:9px}.product-tabs{gap:11px}.product-tabs button{font-size:12px}.product-mac .product-event-title strong{font-size:17px}}
-@media(prefers-reduced-motion:reduce){.product-mac,.product-phone,.product-hero-watch,.product-device-receipt{transform:none!important}}
-@media(min-width:1101px){.product-hero-watch{width:190px}.product-hero-watch>img{height:290px}}
+@media(max-width:1100px){.product-hero-scene{padding-inline:18px}.product-phone{width:150px;min-height:285px;padding-inline:10px}.product-device-receipt{left:38%;bottom:6px;min-width:124px}.product-device-receipt>span{font-size:9px}}
+@media(max-width:680px){.product-hero-scene{min-height:0;padding:28px 18px 38px}.product-phone{width:142px;min-height:279px;padding:20px 9px 18px;border-width:5px}.product-phone-title{font-size:18px}.product-phone-bar{margin-bottom:15px}.product-device-receipt{left:7px;right:0;bottom:-6px;min-width:0;padding:9px 10px}.product-device-receipt>strong{font-size:11px}.product-device-receipt>span{font-size:9px}.product-tabs{gap:15px}.product-activity-head,.product-activity-row{grid-template-columns:40px 1fr 65px;padding:17px 6px;gap:9px;font-size:12px}.product-activity-head{font-size:10px}.product-activity-row>span{font-size:10px}.product-activity-context{font-size:11px;gap:10px}.product-activity-note{font-size:11px}}
+@media(max-width:370px){.product-hero-scene{padding-inline:12px}.product-phone{width:125px;min-height:279px;padding-inline:8px}.product-phone-title{font-size:16px}.product-phone-task>strong{font-size:12px}.product-device-receipt>span{font-size:8px}.product-tabs{gap:11px}.product-tabs button{font-size:12px}}
+@media(prefers-reduced-motion:reduce){
+.product-phone,.product-device-receipt{transform:none!important}}
+
 /* Keep the crew devices within the first phone viewport. */
-@media(max-width:680px){.product-mac{grid-row:2}.product-phone{grid-row:1;grid-column:1}.product-hero-watch{grid-row:1;grid-column:2}.product-device-receipt{bottom:0}}
+@media(max-width:680px){.product-phone{grid-row:1;grid-column:1}.product-device-receipt{bottom:0}}
 .product-field{background:var(--lavender);padding-block:60px;overflow:clip}
 .product-field-layout{display:grid;grid-template-columns:.9fr 1.1fr;align-items:center;gap:72px}
 .product-field-photos{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:center;padding-block:18px}
@@ -162,4 +155,47 @@
 @media(max-width:680px){.product-field{padding-block:42px}.product-field-layout{grid-template-columns:1fr;gap:22px}.product-field-photos{padding:0;gap:14px}.product-field-photos figure{height:260px}.product-field-photos figure:last-child{height:220px}}
 @media(prefers-reduced-motion:reduce){.product-field-photos img{transform:none!important}}
 
-@media(max-width:1000px) and (min-width:681px){.business-hero{grid-template-columns:1fr}.business-hero-copy{padding-bottom:0;max-width:720px}.business-hero h1{font-size:clamp(50px,7vw,70px)}.product-hero-scene{min-height:0;padding:36px 50px 45px}.product-device-grid{grid-template-columns:1fr 1fr;align-items:center;gap:36px 24px}.product-mac{grid-row:2;grid-column:1/-1}.product-phone{grid-row:1;grid-column:1;width:165px}.product-hero-watch{grid-row:1;grid-column:2;width:170px;justify-self:start}.product-device-receipt{left:14px;right:0;bottom:-4px;min-width:0}.product-device-receipt>span{font-size:10px}}
+@media(max-width:1000px) and (min-width:681px){.business-hero{grid-template-columns:1fr}.business-hero-copy{padding-bottom:0;max-width:720px}.business-hero h1{font-size:clamp(50px,7vw,70px)}.product-hero-scene{min-height:0;padding:36px 50px 45px}.product-phone{grid-row:1;grid-column:1;width:165px}.product-device-receipt{left:14px;right:0;bottom:-4px;min-width:0}.product-device-receipt>span{font-size:10px}}
+
+/* Watch first; the smaller laptop opens around its hinge on the first scroll. */
+.product-hero-scene{min-height:620px;padding:32px 28px 42px;overflow:visible}
+.product-device-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px 18px;align-items:center;justify-items:center;width:100%;position:relative;perspective:1200px}
+.product-hero-watch{grid-column:1;grid-row:1/3;width:100%;max-width:260px;position:relative;align-self:center;padding-bottom:50px;transform:translate(var(--product-watch-x,0px),var(--product-watch-y,0px)) rotate(var(--product-watch-angle,-7deg))}
+.product-hero-watch>img{display:block;width:100%;height:410px;object-fit:contain}
+.product-device-receipt{left:50%;right:auto;bottom:0;min-width:132px;transform:translateX(calc(-50% + var(--product-receipt-x,0px)))}
+.product-phone{grid-column:2;grid-row:1;justify-self:center;width:140px;min-height:270px;font-size:10px}
+.product-mac{grid-column:2;grid-row:2;justify-self:center;position:relative;width:89%;max-width:310px;perspective:900px;transform:translateY(var(--product-hero-y,0px)) rotateY(var(--product-hero-angle,-8deg)) rotateZ(var(--product-hero-roll,3deg));transform-origin:50% 70%}
+.product-mac-lid{position:relative;background:var(--ink);border:5px solid var(--ink);border-top-width:10px;border-radius:9px 9px 2px 2px;transform-origin:50% 100%;transform:rotateX(var(--product-lid-angle,-7deg));box-shadow:0 10px 24px #0c0c0c14;backface-visibility:hidden}
+.product-mac-camera{position:absolute;top:-7px;left:50%;width:3px;height:3px;background:var(--muted);border-radius:50%}
+.product-mac .product-hero-window{transform:none;border:0;border-radius:3px 3px 0 0;box-shadow:none}
+.product-mac .product-window-bar{min-height:24px;padding:5px 8px;font-size:8px;gap:6px}
+.product-mac .product-wordmark{font-size:11px}
+.product-mac .product-initial{width:16px;height:16px;font-size:6px}
+.product-mac .product-hero-content{padding:9px 9px 6px}
+.product-mac .product-event-title{gap:3px}
+.product-mac .product-event-title strong{font-size:13px;line-height:1.2}
+.product-mac .product-event-title>span{font-size:8px}
+.product-mac .product-hero-coverage{gap:4px;margin-block:8px 6px}
+.product-mac .product-hero-coverage>span{display:none}
+.product-mac .product-hero-coverage>strong{font-size:10px;line-height:1.3}
+.product-mac .product-coverage-track{gap:3px;margin-top:1px}
+.product-mac .product-coverage-track i{height:4px}
+.product-mac .product-roster-row{padding:4px 0;gap:5px;font-size:8px;line-height:1.3}
+.product-mac .product-status{font-size:7px;white-space:normal;gap:2px}
+.product-mac .product-status svg{width:10px;height:10px}
+.product-mac .product-hero-footer{font-size:8px;line-height:1.3;margin-top:7px;min-height:0}
+.product-mac-deck{position:relative;height:76px;background:var(--border);border:1px solid var(--muted);border-radius:1px 1px 7px 7px;padding:8px 12px 5px;transform-origin:50% 0;transform:rotateX(52deg);box-shadow:0 5px 0 #DFDCE2,0 13px 20px #0c0c0c14}
+.product-keyboard{display:grid;gap:3px}
+.product-key-row{display:grid;grid-template-columns:repeat(14,1fr);gap:2px}
+.product-key-row:nth-child(3){grid-template-columns:repeat(13,1fr)}
+.product-key-row:last-child{grid-template-columns:repeat(4,1fr) 4fr repeat(5,1fr)}
+.product-key-row i{display:block;height:5px;background:var(--muted);border-radius:1px}
+.product-trackpad{width:25%;height:17px;margin:6px auto 0;border:1px solid var(--muted);border-radius:2px}
+@media(max-width:1100px) and (min-width:681px){.product-hero-scene{min-height:580px;padding:32px 24px 40px}.product-hero-watch{max-width:240px}.product-hero-watch>img{height:380px}.product-phone{width:140px}.product-mac{width:90%;max-width:300px}}
+@media(max-width:680px){.product-hero-scene{padding:25px 16px 40px;min-height:0}.product-device-grid{grid-template-columns:1.1fr .9fr;gap:24px 12px}.product-hero-watch{grid-row:1;max-width:175px;padding-bottom:42px}.product-hero-watch>img{height:310px}.product-phone{grid-column:2;grid-row:1;width:125px;min-height:265px;align-self:center;justify-self:center}.product-phone-title{font-size:16px}.product-phone-task>strong{font-size:12px}.product-mac{grid-column:1/-1;grid-row:2;width:85%;max-width:285px;margin-top:4px}.product-device-receipt{min-width:120px;padding:9px 10px}.product-device-receipt>span{font-size:9px}.product-device-receipt>strong{font-size:11px}}
+@media(max-width:370px){.product-hero-scene{padding-inline:12px}.product-device-grid{gap:20px 6px}.product-hero-watch>img{height:285px}.product-phone{width:110px;min-height:265px;padding-inline:7px}.product-phone-title{font-size:15px}.product-phone-task>strong{font-size:11px}.product-phone-next>strong{font-size:9px}.product-phone-complete{font-size:9px}.product-mac{max-width:260px}}
+@media(prefers-reduced-motion:reduce){.product-mac,.product-hero-watch{transform:none!important}.product-mac-lid{transform:rotateX(-7deg)!important}}
+.product-hero-watch{align-self:start;margin-top:8px}
+.product-hero-watch>img{height:auto;aspect-ratio:720/900}
+.product-phone{margin-top:42px}
+@media(max-width:680px){.product-phone{margin-top:30px}.product-hero-watch{margin-top:0}}
