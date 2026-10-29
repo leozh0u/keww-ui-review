@@ -103,16 +103,16 @@
         const progress = clamp(-rect.top / Math.max(1, rect.height));
         const small = innerWidth <= 680;
         const opening = clamp(scrollY / 360);
-        hero.style.setProperty('--product-hero-y', `${opening * -10}px`);
-        hero.style.setProperty('--product-lid-angle', `${-38+opening*31}deg`);
-        hero.style.setProperty('--product-hero-angle', `${-8+opening*11}deg`);
-        hero.style.setProperty('--product-hero-roll', `${3-opening*3}deg`);
-        hero.style.setProperty('--product-phone-x', `${-9-progress*(small?4:20)}px`);
+        hero.style.setProperty('--product-hero-y', `${opening * -8}px`);
+        hero.style.setProperty('--product-laptop-scale', `${.985+opening*.015}`);
+        hero.style.setProperty('--product-hero-angle', `${-3+opening*5}deg`);
+        hero.style.setProperty('--product-hero-roll', `${1-opening*1.5}deg`);
+        hero.style.setProperty('--product-phone-x', `${(small?0:-9)-progress*(small?4:20)}px`);
         hero.style.setProperty('--product-phone-y', `${progress*-36}px`);
-        hero.style.setProperty('--product-phone-angle', `${-7+progress*10}deg`);
+        hero.style.setProperty('--product-phone-angle', `${-4+progress*6}deg`);
         hero.style.setProperty('--product-watch-x', `${opening*(small?3:8)}px`);
         hero.style.setProperty('--product-watch-y', `${opening*-18}px`);
-        hero.style.setProperty('--product-watch-angle', `${-7+opening*13}deg`);
+        hero.style.setProperty('--product-watch-angle', `${-3+opening*6}deg`);
         hero.style.setProperty('--product-receipt-x', `${progress*-16}px`);
       }
     }
