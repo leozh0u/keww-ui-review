@@ -22,7 +22,8 @@ or live employee data.
 Applications and inquiries are disabled. Entries and uploads stay in browser
 memory. The role list is a read-only snapshot. Find Work opens the complete review
 application, which links the original live KEWW form for real submissions. The
-review creates no worker accounts or email. Backend source, credentials, private
+review creates no worker accounts or email. Demo inquiries also link the original
+live form, and website email links use admin@workwithkeww.com provisionally. Backend source, credentials, private
 assessment answers and applicant records are excluded.
 
 Tina's supplied KEWW palette is retained. The local Lato font remains provisional;
