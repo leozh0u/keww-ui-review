@@ -31,7 +31,7 @@ release on intentional teardown and ignores events from retired canvases.
 The homepage now leads with “Make better staffing decisions.” and an interactive
 KEWW app illustration. Staffing, Tasks and Hours views use fictional example
 records. Complete a sample task to see its source record and total change, then
-reset it. Four assigned crew account for32planned and30recorded examplehours.
+reset it. Four assigned crew account for 32 planned and 30 recorded example hours.
 The watch remains a supporting workflow chapter. Availability text sits outside
 the animation. Bold Find Work is immediately before Watches and opens the
 localized application. No live data is fetched by the product illustration.
