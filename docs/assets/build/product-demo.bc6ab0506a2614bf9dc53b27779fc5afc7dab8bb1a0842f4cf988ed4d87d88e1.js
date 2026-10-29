@@ -91,6 +91,43 @@
   const demo = document.querySelector('[data-product-demo]');
   const field = document.querySelector('[data-product-field]');
   if (!hero && !demo) return;
+  // Unwarp the photographed keyboard onto the rigid deck once per resize.
+  // Top-surface corners: (270,671), (1266,671), (1388,954), (148,954).
+  // Exclude the photographed front wall; the solid geometry supplies that edge.
+  const mac = hero?.querySelector('[data-product-plane]');
+  const chassis = mac?.querySelector('[data-laptop-chassis]');
+  const fallback = mac?.querySelector('[data-laptop-fallback]');
+  const texture = mac?.querySelector('[data-laptop-texture]');
+  function fitChassis() {
+    if (!mac || !chassis || !fallback || !texture) return;
+    const width = mac.clientWidth;
+    if (!width) return;
+    mac.style.setProperty('--product-perspective', `${width*10}px`);
+    mac.style.setProperty('--product-deck-depth', `${width*.6}px`);
+    mac.style.setProperty('--product-base-depth', `${width*.025}px`);
+    mac.style.setProperty('--product-lid-depth', `${width*.009}px`);
+    const [a,b,c,d,e,f,g,h] = [0.0023953819068255667, 0.0010326381365113747, -1.3396533044420353, -1.2785587281443674e-19, 0.0062973997833152716, -4.225555254604546, -1.1573528479382767e-18, 0.002065276273022751];
+    texture.style.transform = `matrix3d(${a*width},${d*width},0,${g},${b*width},${e*width},0,${h},0,0,1,0,${c*width},${f*width},0,1)`;
+    const screen = fallback.querySelector('.product-mac-screen');
+    if (screen) chassis.querySelector('.product-lid-front').append(screen);
+    fallback.hidden = true;
+    chassis.hidden = false;
+    mac.dataset.chassisReady = '';
+  }
+  const deviceGrid = hero?.querySelector('.product-device-grid');
+  function fitHero() {
+    if (!hero || !deviceGrid) return;
+    hero.style.removeProperty('--product-cluster-scale');
+    hero.style.removeProperty('--product-scene-height');
+    if (innerWidth <= 1000) { delete hero.dataset.heroFit; return; }
+    hero.dataset.heroFit = '';
+    const available = Math.max(420, innerHeight - (hero.getBoundingClientRect().top + scrollY) - 84);
+    const scale = Math.min(1, (available - 60) / deviceGrid.offsetHeight);
+    hero.style.setProperty('--product-cluster-scale', String(scale));
+    hero.style.setProperty('--product-scene-height', `${deviceGrid.offsetHeight*scale + 60}px`);
+  }
+  fitChassis();
+  fitHero();
   let frame = 0;
   let suspended = false;
   const clamp = value => Math.max(0, Math.min(1, value));
@@ -102,14 +139,17 @@
       if (rect.bottom > 0 && rect.top < innerHeight) {
         const progress = clamp(-rect.top / Math.max(1, rect.height));
         const small = innerWidth <= 680;
-        const opening = clamp(scrollY / 360);
+        const opening = clamp(scrollY / 320);
+        const fold = opening * opening * (3 - 2 * opening);
         hero.style.setProperty('--product-hero-y', `${opening * -8}px`);
         hero.style.setProperty('--product-laptop-scale', `${.985+opening*.015}`);
+        hero.style.setProperty('--product-lid-angle', `${110*(1-fold)}deg`);
         hero.style.setProperty('--product-hero-angle', `${-3+opening*5}deg`);
         hero.style.setProperty('--product-hero-roll', `${1-opening*1.5}deg`);
         hero.style.setProperty('--product-phone-x', `${(small?0:-9)-progress*(small?4:20)}px`);
         hero.style.setProperty('--product-phone-y', `${progress*-36}px`);
         hero.style.setProperty('--product-phone-angle', `${-4+progress*6}deg`);
+        hero.style.setProperty('--product-phone-yaw', `${-18+progress*8}deg`);
         hero.style.setProperty('--product-watch-x', `${opening*(small?3:8)}px`);
         hero.style.setProperty('--product-watch-y', `${opening*-18}px`);
         hero.style.setProperty('--product-watch-angle', `${-3+opening*6}deg`);
@@ -145,10 +185,11 @@
       if (!element) continue;
       for (const property of [...element.style]) if (property.startsWith('--product-')) element.style.removeProperty(property);
     }
+    fitHero();
     schedule();
   });
   addEventListener('scroll', schedule, { passive: true });
-  addEventListener('resize', schedule, { passive: true });
+  addEventListener('resize', () => { fitChassis(); fitHero(); schedule(); }, { passive: true });
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) {
       cancel();

@@ -4,11 +4,13 @@
 
 Static website prototype for UI consultation. It does not replace workwithkeww.com.
 
-“Make better staffing decisions.” introduces a larger laptop above the phone and
-watch. The laptop uses an illustrative studio hardware render with a realistic
-keyboard and a separate HTML KEWW interface. Scroll movement is restrained. The
-existing task-through-event watch sequence leads into the explorable workspace
-and service photographs.
+“Make better staffing decisions.” introduces a solid laptop above the phone and
+watch. The laptop has a photographic keyboard, modeled metal thickness and an
+editable HTML KEWW screen. Downward scroll closes the lid and keeps it closed;
+scrolling upward reopens it. The KEWW icon appears on the back. The phone has a
+matching 3D frame and editable screen. Desktop sizing keeps the device family
+and actions within the first view. The existing task-through-event watch sequence
+leads into the explorable workspace and service photographs.
 
 Staffing, Tasks, Hours and Watch updates use fictional example records. Complete
 and reset a sample task to see its source record and total change. The homepage
