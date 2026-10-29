@@ -39,3 +39,10 @@ localized application. No live data is fetched by the product illustration.
 App layers, data comparisons, documents and staff photographs use bounded native
 scroll motion. Tabs and local task actions work with a keyboard and reduced
 motion; all three example views remain readable without JavaScript.
+
+The hero includes desktop/laptop, phone and watch product illustrations. The
+phone and watch appear first on smaller screens. Watch updates is a fourth
+interactive sample view, separating assignment, opening and completion records.
+An earlier service-photo section uses existing Cafe Natalie photographs with
+bounded scroll motion. These are illustrations and fictional records, not a
+claim of released native clients or live watch reporting.
