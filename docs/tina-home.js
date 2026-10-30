@@ -33,7 +33,6 @@
     sceneFrame.style.setProperty('--hero-scale', String(width / 650));
     const viewport = window.visualViewport?.height || innerHeight;
     heroTravel = Math.round(Math.max(320, innerHeight, viewport, sceneFrame.getBoundingClientRect().height) * .8);
-    root.style.setProperty('--hero-travel', `${heroTravel}px`);
   }
   function prepareHero() {
     heroMotions.splice(0).forEach(animation => animation.cancel());
@@ -55,7 +54,7 @@
     heroFrame = 0;
     if (destroyed || document.hidden || !heroVisible || media.matches || paused) return;
     const progress = desktopHero.matches
-      ? (document.querySelector('.site-header').getBoundingClientRect().height - hero.getBoundingClientRect().top) / Math.max(1, hero.offsetHeight - root.querySelector('.kh-layout').offsetHeight)
+      ? (document.querySelector('.site-header').getBoundingClientRect().height - hero.getBoundingClientRect().top) / Math.max(1, heroTravel)
       : ((window.visualViewport?.height || innerHeight)*.8 - sceneFrame.getBoundingClientRect().top) / Math.max(sceneFrame.getBoundingClientRect().height,1);
     const time = Math.max(0,Math.min(1,progress)) * 1000;
     heroMotions.forEach(animation => { animation.currentTime = time; });

@@ -1248,7 +1248,7 @@
 .tina-home #watches .tina-workflow .orbit-body{height:auto;min-height:300px;overflow:visible}
 .tina-home #watches .tina-workflow .graphic .watch{order:2;position:relative;inset:auto;margin:70px auto 90px;opacity:1!important;transform:none!important;filter:none!important}
 }
-/* The opening is one complete scene. The short native-scroll handoff is desktop only. */
+/* The opening scrolls in normal document flow while its devices animate. */
 .tina-home{--header-height:81px}
 .tina-home .kh-hero{overflow:clip}
 .tina-home .kh-copy h1{font-size:clamp(40px,3.85vw,60px);letter-spacing:-.04em;line-height:1.1}
@@ -1269,8 +1269,6 @@
  .tina-home .kh-hero{min-height:calc(100svh - var(--header-height))}
  .tina-home .kh-layout{min-height:calc(100svh - var(--header-height));padding-block:28px;grid-template-columns:minmax(0,.94fr) minmax(0,1.06fr);gap:28px}
  .tina-home .kh-scene{height:620px;width:100%;margin:0;transform:none;transform-origin:center center}
- .tina-home[data-opening="scroll"] .kh-hero{min-height:calc(100svh - var(--header-height) + 280px)}
- .tina-home[data-opening="scroll"] .kh-layout{position:sticky;top:var(--header-height)}
 }
 @media(min-width:1000px) and (max-height:780px){
  .tina-home .kh-layout{padding-block:12px}
@@ -1297,13 +1295,11 @@
 .tina-home .kh-keyboard::after{content:"";position:absolute;top:0;left:14%;right:14%;height:5px;border-radius:4px;background:linear-gradient(#515358,#141518)}
 .tina-home .tina-pause{min-width:68px;min-height:36px;top:0;right:0;text-align:center;font-size:11px}
 .tina-home .kh-layout{grid-template-columns:minmax(0,1fr);gap:34px;padding-block:40px;min-height:calc(100svh - var(--header-height));position:static!important}
-.tina-home .kh-hero,.tina-home[data-opening="scroll"] .kh-hero{min-height:calc(100svh - var(--header-height))}
+.tina-home .kh-hero{min-height:calc(100svh - var(--header-height))}
 .tina-home .kh-copy{min-width:0}
 @media(min-width:1100px) and (min-height:620px){
  .tina-home .kh-layout{grid-template-columns:minmax(0,.94fr) minmax(0,1.06fr);gap:28px;padding-block:28px}
  .tina-home .kh-scene-frame{width:min(100%,720px,calc((100svh - var(--header-height) - 80px)*650/620))}
- .tina-home[data-opening="scroll"] .kh-hero{min-height:calc(100svh - var(--header-height) + var(--hero-travel,80svh))}
- .tina-home[data-opening="scroll"] .kh-layout{position:sticky!important;top:var(--header-height)}
 }
 @media(max-width:1099px){.tina-home .kh-scene-frame{--hero-scale:1}}
 @media(max-width:700px){.tina-home .kh-scene-frame{--hero-scale:.8}}

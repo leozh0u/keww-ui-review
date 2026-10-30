@@ -4,7 +4,8 @@
 [Compare the frozen laptop version](https://leozh0u.github.io/keww-laptop-review/).
 
 Tina La's homepage system with a fitted desktop/tablet/phone opening, deeper laptop bezel and keyboard,
-and native-scroll travel that follows the visible layout and zoom.
+and device motion that follows normal page scrolling and zoom. The opening moves
+immediately with the document; there is no sticky hold or animation-only spacer.
 The current comparison tries "Every event. Every team. Everything connected."
 with concrete product copy; the old version retains the staffing headline.
 
