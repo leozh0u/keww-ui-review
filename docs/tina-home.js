@@ -23,6 +23,38 @@
   let phase = 0, timer = 0, frame = 0, heroVisible = false, storyVisible = false;
   let paused = false, played = false, destroyed = false;
   const motions = [];
+  const heroMotions = [];
+  const hero = $('hero');
+  const desktopHero = matchMedia('(min-width:1000px)');
+  let heroFrame = 0;
+  function prepareHero() {
+    heroMotions.splice(0).forEach(animation => animation.cancel());
+    if (media.matches || typeof IntersectionObserver !== 'function') return;
+    const distance = desktopHero.matches ? 1 : .35;
+    const tracks = [
+      ['.kh-laptop', 'perspective(1400px) rotateY(-3deg) scale(.91)', `perspective(1400px) translate3d(${-16*distance}px,${-4*distance}px,-20px) rotateY(-10deg) rotateX(7deg) scale(.86)`],
+      ['.kh-phone', 'perspective(1000px) rotate(3deg)', `perspective(1000px) translate3d(${-15*distance}px,${-35*distance}px,0) rotateY(-10deg) rotateZ(0deg) scale(1.03)`],
+      ['.kh-watch', 'rotate(-8deg)', `translate3d(${35*distance}px,${-32*distance}px,0) rotate(-2deg) scale(1.08)`]
+    ];
+    for (const [selector, start, finish] of tracks) {
+      const element = root.querySelector(selector);
+      if (!element?.animate) continue;
+      const animation = element.animate([{transform:start},{transform:finish}], {duration:1000,fill:'both',easing:'linear'});
+      animation.pause(); animation.currentTime = 0; heroMotions.push(animation);
+    }
+  }
+  function updateHero() {
+    heroFrame = 0;
+    if (destroyed || document.hidden || !heroVisible || media.matches || paused) return;
+    const progress = desktopHero.matches
+      ? (document.querySelector('.site-header').getBoundingClientRect().height - hero.getBoundingClientRect().top) / 280
+      : (innerHeight*.8 - scene.getBoundingClientRect().top) / Math.max(innerHeight*.55,1);
+    const time = Math.max(0,Math.min(1,progress)) * 1000;
+    heroMotions.forEach(animation => { animation.currentTime = time; });
+  }
+  function scheduleHero() {
+    if (!heroFrame && heroVisible && !document.hidden && !destroyed && !media.matches && !paused) heroFrame = requestAnimationFrame(updateHero);
+  }
   const setText = (id, value) => { const node = $(id); if (node) node.textContent = value; };
   const on = (target, name, handler, options) => target?.addEventListener(name, handler, options);
   function showPhase(next) {
@@ -79,10 +111,12 @@
   }
   function updateMotionState() {
     scene.dataset.paused = String(paused);
+    root.dataset.opening = !destroyed && !media.matches && observer && heroMotions.length === 3 ? 'scroll' : 'static';
     root.dataset.motionActive = String(!destroyed && !document.hidden && (heroVisible || storyVisible) && !media.matches);
     if (!active()) stopTimer();
     else if (!played) { played = true; advance(); }
     else advance();
+    scheduleHero();
   }
   on($('kh-replay'), 'click', () => {
     paused = false; played = true; pause.setAttribute('aria-pressed', 'false'); pause.textContent = copy.pause;
@@ -194,32 +228,39 @@
     updateMotionState(); scheduleStory();
   }, {rootMargin:'40px 0px',threshold:0}) : null;
   function lifecycle() {
-    if (document.hidden) { stopTimer(); cancelAnimationFrame(frame); frame = 0; }
-    else scheduleStory();
+    if (document.hidden) { stopTimer(); cancelAnimationFrame(frame); frame = 0; cancelAnimationFrame(heroFrame); heroFrame = 0; }
+    else { scheduleStory(); scheduleHero(); }
     updateMotionState();
   }
   function preference() {
     stopTimer(); cancelAnimationFrame(frame); frame = 0;
+    cancelAnimationFrame(heroFrame); heroFrame = 0; prepareHero();
     if (media.matches) showPhase(3);
     updateMotionState(); scheduleStory();
   }
   on(document,'visibilitychange',lifecycle);
   on(media,'change',preference);
   on(window,'scroll',scheduleStory,{passive:true});
+  on(window,'scroll',scheduleHero,{passive:true});
   on(window,'resize',scheduleStory,{passive:true});
+  on(window,'resize',scheduleHero,{passive:true});
+  on(desktopHero,'change',() => { prepareHero(); scheduleHero(); });
   on(window,'pagehide',() => {
     destroyed = true; stopTimer(); cancelAnimationFrame(frame); frame = 0;
     motions.forEach(animation => animation.cancel()); observer?.disconnect(); root.dataset.motionActive = 'false';
+    cancelAnimationFrame(heroFrame); heroFrame = 0;
+    heroMotions.splice(0).forEach(animation => animation.cancel());
   });
   on(window,'pageshow',event => {
     if (!event.persisted) return;
-    destroyed = false; motions.length = 0; prepareOrbit(); observer?.observe(scene); observer?.observe(watchSection); lifecycle();
+    destroyed = false; motions.length = 0; prepareOrbit(); prepareHero(); observer?.observe(scene); observer?.observe(watchSection); lifecycle();
   });
   storyWatch.inert = !mobileStory.matches;
   steps.forEach(step => { step.disabled = false; });
   root.dataset.enhanced = 'true';
   selectTab(0);
   prepareOrbit();
+  prepareHero();
   showPhase(media.matches ? 3 : 0);
   observer?.observe(scene); observer?.observe(watchSection);
   if (!observer) updateMotionState();

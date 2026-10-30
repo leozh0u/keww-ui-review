@@ -1,25 +1,25 @@
 # KEWW UI review
 
-[Open the free preview](https://leozh0u.github.io/keww-ui-review/).
+[Open the refined version](https://leozh0u.github.io/keww-ui-review/).
+[Compare the frozen laptop version](https://leozh0u.github.io/keww-laptop-review/).
 
-Static review of Tina La's 30 October homepage design, extended with dedicated
-Platform, Watches and Kasheww pages in English, Spanish and Simplified Chinese.
-The original workwithkeww.com site stays live.
+Tina La's homepage system with a complete desktop opening, keyboard behind the
+editable workspace and a short native-scroll handoff to the phone and watch.
+The current comparison tries "Every event. Every team. Everything connected."
+with concrete product copy; the old version retains the staffing headline.
 
-The homepage shows an editable sample workspace, phone and watch, an event task
-workflow, service-floor example, business options and Kasheww preview. Example
-records are fictional. Watch integration remains in development and Kasheww is
-in pilot; illustrations do not establish live data or released native clients.
+Platform, Watches and Kasheww open dedicated English, Spanish and Simplified
+Chinese pages. Find Work opens the complete review application. Applications
+and inquiries are disabled here, with links to the original live forms for real
+submissions. The role list is a read-only snapshot. Backend code, credentials,
+private assessment answers and applicant records are excluded.
 
-Find Work opens the full review application. Applications and inquiries are
-disabled here, with links to the original live forms for real submissions.
-Uploads and entries remain in browser memory; the role list is a read-only
-snapshot. Backend code, credentials, private assessment answers and applicant
-records are excluded. The interim website contact is admin@workwithkeww.com.
+Existing Cafe Natalie photography accompanies fictional task data. Complete or
+reset the example to see the task count and summary change. This is not employee
+tracking. Watch integration remains in development and Kasheww is in pilot.
+Screens can be replaced with approved UI later.
 
-The site uses Tina's purple/pale visual system, self-hosted Plus Jakarta Sans
-under the SIL Open Font License and installed system body fonts. Font and
-retained vendor licence notices ship with the assets. Tina's provided service
-illustration is identified as AI-generated; the personal reference phone raster
-is excluded. Keyboard controls, reduced-motion views and useful no-JavaScript
-content are retained.
+The site uses self-hosted Plus Jakarta Sans under the SIL Open Font License and
+installed system body fonts. Font and retained vendor licence notices ship with
+the assets. Keyboard controls, reduced-motion views and useful no-JavaScript
+content remain available. Original workwithkeww.com stays live.
