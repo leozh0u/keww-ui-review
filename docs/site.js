@@ -1,4 +1,5 @@
-document.getElementById('year').textContent = String(new Date().getFullYear());
+const year = document.getElementById('year');
+if (year) year.textContent = String(new Date().getFullYear());
 
 const motionPreference = matchMedia('(prefers-reduced-motion: reduce)');
 const mosaic = document.querySelector('.photo-mosaic');
@@ -40,10 +41,14 @@ motionPreference.addEventListener('change', startMotion);
 addEventListener('pagehide', stopMotion);
 
 const languageMenu = document.querySelector('.language-menu');
+const headerMenus = [languageMenu, document.querySelector('.mobile-menu')].filter(Boolean);
+for (const menu of headerMenus) menu.addEventListener?.('toggle', () => {
+  if (menu.open) for (const other of headerMenus) if (other !== menu) other.open = false;
+});
 document.addEventListener?.('keydown', event => {
-  if (event.key === 'Escape' && languageMenu?.open) {
-    languageMenu.open = false;
-    languageMenu.querySelector('summary').focus();
+  if (event.key === 'Escape') {
+    const open = headerMenus.find(menu => menu.open);
+    if (open) { open.open = false; open.querySelector('summary').focus(); }
   }
 });
 document.addEventListener?.('click', event => {
@@ -53,5 +58,5 @@ document.addEventListener?.('click', event => {
     if (request === 'demo' || request === 'free-trial') target.search = new URLSearchParams({ request }).toString();
     target.hash = location.hash;
   }
-  if (languageMenu?.open && !languageMenu.contains(event.target)) languageMenu.open = false;
+  for (const menu of headerMenus) if (menu.open && !menu.contains(event.target)) menu.open = false;
 });
