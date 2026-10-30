@@ -1288,3 +1288,35 @@
 @media(max-width:999px){.tina-home .kh-copy h1{font-size:clamp(38px,5.6vw,57px)}}
 @media(max-width:620px){.tina-home .kh-copy h1{font-size:clamp(34px,8.5vw,48px)}.tina-home .kh-copy p{font-size:15px}.tina-home .kh-laptop{left:5%}}
 @media(prefers-reduced-motion:reduce){.tina-home[data-enhanced] .kh-hero{min-height:calc(100svh - var(--header-height))}.tina-home[data-enhanced] .kh-layout{position:static}}
+/* Fit one authored device coordinate system, including during browser zoom/reflow. */
+.tina-home .kh-scene-frame{position:relative;container-type:inline-size;width:min(100%,720px);aspect-ratio:650/620;min-width:0;margin-inline:auto;--hero-scale:.75}
+.tina-home .kh-scene-frame .kh-scene{position:absolute;inset:0;width:650px;max-width:none;height:620px;margin:0!important;transform:scale(var(--hero-scale));transform-origin:top left}
+.tina-home .kh-laptop{top:43px}
+.tina-home .kh-laptop::after{content:"";position:absolute;top:100%;left:-5px;right:-5px;height:18px;border-radius:0 0 6px 6px;background:linear-gradient(#28282d,#222329);box-shadow:inset 0 -2px 0 #44464b}
+.tina-home .kh-keyboard{top:calc(100% + 17px)}
+.tina-home .kh-keyboard::after{content:"";position:absolute;top:0;left:14%;right:14%;height:5px;border-radius:4px;background:linear-gradient(#515358,#141518)}
+.tina-home .tina-pause{min-width:68px;min-height:36px;top:0;right:0;text-align:center;font-size:11px}
+.tina-home .kh-layout{grid-template-columns:minmax(0,1fr);gap:34px;padding-block:40px;min-height:calc(100svh - var(--header-height));position:static!important}
+.tina-home .kh-hero,.tina-home[data-opening="scroll"] .kh-hero{min-height:calc(100svh - var(--header-height))}
+.tina-home .kh-copy{min-width:0}
+@media(min-width:1100px) and (min-height:620px){
+ .tina-home .kh-layout{grid-template-columns:minmax(0,.94fr) minmax(0,1.06fr);gap:28px;padding-block:28px}
+ .tina-home .kh-scene-frame{width:min(100%,720px,calc((100svh - var(--header-height) - 80px)*650/620))}
+ .tina-home[data-opening="scroll"] .kh-hero{min-height:calc(100svh - var(--header-height) + var(--hero-travel,80svh))}
+ .tina-home[data-opening="scroll"] .kh-layout{position:sticky!important;top:var(--header-height)}
+}
+@media(max-width:1099px){.tina-home .kh-scene-frame{--hero-scale:1}}
+@media(max-width:700px){.tina-home .kh-scene-frame{--hero-scale:.8}}
+@media(max-width:560px){.tina-home .kh-scene-frame{--hero-scale:.62}}
+@media(max-width:440px){.tina-home .kh-scene-frame{--hero-scale:.5}}
+@media(max-width:360px){.tina-home .kh-scene-frame{--hero-scale:.42}}
+@supports(transform:scale(calc(1px / 1px))){.tina-home .kh-scene-frame{--hero-scale:calc(100cqi / 650px)}}
+@media(prefers-reduced-motion:reduce){.tina-home[data-opening="scroll"] .kh-hero{min-height:calc(100svh - var(--header-height))}.tina-home[data-opening="scroll"] .kh-layout{position:static!important}}
+
+@media(min-width:761px){.tina-home #stage-2{min-height:max(1500px,170svh)}}
+
+.tina-home[data-orbit="static"] #watches .concept-grid>div:last-child{position:static;top:auto}
+.tina-home[data-orbit="static"] #watches .tina-workflow .stage{display:flex;flex-direction:column;height:auto;overflow:visible;padding-block:12px}
+.tina-home[data-orbit="static"] #watches .tina-workflow .orbit-product{position:relative;inset:auto;width:94%;margin:12px auto;opacity:1!important;visibility:visible;transform:none!important;filter:none!important}
+.tina-home[data-orbit="static"] #watches .tina-workflow .orbit-body{height:auto;min-height:300px;overflow:visible}
+.tina-home[data-orbit="static"] #watches .tina-workflow .graphic .watch{position:relative;inset:auto;margin:30px auto;opacity:1!important;visibility:visible;transform:none!important;filter:none!important}

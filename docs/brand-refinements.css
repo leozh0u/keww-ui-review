@@ -1,0 +1,35 @@
+/* Existing Kasheww brand mark and a quieter editorial rhythm. */
+.tina-home .scroll-stage .concept-intro{font-size:16px;line-height:1.65;color:#6d637a;max-width:38ch;margin-bottom:18px}
+.tina-home .scroll-stage .concept-highlight{grid-template-columns:minmax(0,1fr);min-height:clamp(180px,28svh,260px);padding:24px 0;gap:0}
+.tina-home .scroll-stage .concept-highlight>div{min-width:0}
+.tina-home .scroll-stage .concept-highlight h3{max-width:17ch;margin:0;text-wrap:balance}
+.tina-home .ks-product-brand{gap:11px;align-items:center;flex-wrap:nowrap;margin-bottom:20px}
+.tina-home .ks-product-mark{width:44px;height:44px;display:block;flex:none}
+.tina-home .ks-product-wordmark{font:750 32px/1.1 var(--font-heading);letter-spacing:-.035em;color:#28232f;white-space:nowrap}
+.tina-home .ks-product-wordmark>span{color:#65558f}
+.tina-home .kasheww .kasheww-head h2{margin-top:0}
+.tina-home .ks-chrome-brand{display:inline-flex;align-items:center;gap:7px;line-height:1.2}
+.tina-home .ks-chrome-brand>img{display:block;width:22px;height:22px;flex:none}
+.tina-home .ks-chrome-brand .ks-chrome-label{margin-left:4px}
+.tina-home .ks-benefits{margin-top:25px}
+.tina-home .end{gap:24px;min-height:320px;padding:48px 56px}
+.tina-home .end>div{min-width:0;max-width:560px}
+.tina-home .end .section-title{font-size:clamp(32px,3.6vw,46px);line-height:1.14;max-width:18ch;text-wrap:balance}
+.tina-home .end p{margin-top:18px;max-width:38ch;font-size:15px;line-height:1.6}
+.tina-home .end>.button-primary{width:fit-content;min-height:46px;align-self:flex-start;margin:0;white-space:normal;text-align:center;padding:12px 20px;font-size:13px;line-height:1.3}
+.product-page .pp-kasheww-mark{display:block;width:48px;height:48px;margin-bottom:22px}
+@media(max-width:760px){
+ .tina-home .scroll-stage .concept-intro{font-size:15px;margin-bottom:14px}
+ .tina-home .scroll-stage .concept-highlight{min-height:0;padding:20px 0}
+ .tina-home .scroll-stage .concept-highlight h3{font-size:29px;max-width:18ch}
+ .tina-home .scroll-stage{padding-bottom:26px;margin-bottom:28px}
+ .tina-home .ks-product-mark{width:38px;height:38px}
+ .tina-home .ks-product-wordmark{font-size:28px}
+ .tina-home .ks-product-brand{margin-bottom:18px}
+ .tina-home .kasheww .kasheww-head h2{font-size:clamp(30px,6vw,40px);line-height:1.16;text-wrap:balance}
+ .tina-home .kasheww .kasheww-head h2 br{display:none}
+ .tina-home .end{min-height:320px;padding:32px 25px;gap:22px}
+ .tina-home .end .section-title{font-size:32px;max-width:17ch}
+ .tina-home .end p{font-size:14px;max-width:30ch;margin-top:16px}
+ .product-page .pp-kasheww-mark{width:42px;height:42px;margin-bottom:18px}
+}

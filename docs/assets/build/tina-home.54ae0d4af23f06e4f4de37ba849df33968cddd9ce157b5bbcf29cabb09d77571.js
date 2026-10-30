@@ -21,12 +21,20 @@
   const tabs = [...root.querySelectorAll('[data-ks]')];
   const panels = [...root.querySelectorAll('.ks-panel-view')];
   let phase = 0, timer = 0, frame = 0, heroVisible = false, storyVisible = false;
-  let paused = false, played = false, destroyed = false;
+  let paused = false, destroyed = false;
   const motions = [];
   const heroMotions = [];
   const hero = $('hero');
-  const desktopHero = matchMedia('(min-width:1000px)');
-  let heroFrame = 0;
+  const desktopHero = matchMedia('(min-width:1100px) and (min-height:620px)');
+  let heroFrame = 0, heroTravel = 0;
+  const sceneFrame = root.querySelector('.kh-scene-frame');
+  function measureHero() {
+    const width = sceneFrame.getBoundingClientRect().width;
+    sceneFrame.style.setProperty('--hero-scale', String(width / 650));
+    const viewport = window.visualViewport?.height || innerHeight;
+    heroTravel = Math.round(Math.max(320, innerHeight, viewport, sceneFrame.getBoundingClientRect().height) * .8);
+    root.style.setProperty('--hero-travel', `${heroTravel}px`);
+  }
   function prepareHero() {
     heroMotions.splice(0).forEach(animation => animation.cancel());
     if (media.matches || typeof IntersectionObserver !== 'function') return;
@@ -47,8 +55,8 @@
     heroFrame = 0;
     if (destroyed || document.hidden || !heroVisible || media.matches || paused) return;
     const progress = desktopHero.matches
-      ? (document.querySelector('.site-header').getBoundingClientRect().height - hero.getBoundingClientRect().top) / 280
-      : (innerHeight*.8 - scene.getBoundingClientRect().top) / Math.max(innerHeight*.55,1);
+      ? (document.querySelector('.site-header').getBoundingClientRect().height - hero.getBoundingClientRect().top) / Math.max(1, hero.offsetHeight - root.querySelector('.kh-layout').offsetHeight)
+      : ((window.visualViewport?.height || innerHeight)*.8 - sceneFrame.getBoundingClientRect().top) / Math.max(sceneFrame.getBoundingClientRect().height,1);
     const time = Math.max(0,Math.min(1,progress)) * 1000;
     heroMotions.forEach(animation => { animation.currentTime = time; });
   }
@@ -106,28 +114,23 @@
   function active() { return !destroyed && !document.hidden && heroVisible && !media.matches && !paused; }
   function advance() {
     stopTimer();
-    if (!active() || phase >= 3) return;
-    timer = setTimeout(() => { showPhase(phase + 1); advance(); }, 2300);
+    if (!active()) return;
+    timer = setTimeout(() => { showPhase((phase + 1) % steps.length); advance(); }, 2300);
   }
   function updateMotionState() {
     scene.dataset.paused = String(paused);
     root.dataset.opening = !destroyed && !media.matches && observer && heroMotions.length === 3 ? 'scroll' : 'static';
     root.dataset.motionActive = String(!destroyed && !document.hidden && (heroVisible || storyVisible) && !media.matches);
     if (!active()) stopTimer();
-    else if (!played) { played = true; advance(); }
     else advance();
     scheduleHero();
   }
-  on($('kh-replay'), 'click', () => {
-    paused = false; played = true; pause.setAttribute('aria-pressed', 'false'); pause.textContent = copy.pause;
-    showPhase(0); updateMotionState();
-  });
   on(pause, 'click', () => {
     paused = !paused; pause.setAttribute('aria-pressed', String(paused)); pause.textContent = paused ? copy.resume : copy.pause;
     updateMotionState();
   });
   steps.forEach((step, i) => on(step, 'click', () => {
-    stopTimer(); paused = true; played = true; pause.setAttribute('aria-pressed', 'true'); pause.textContent = copy.resume; showPhase(i); updateMotionState();
+    stopTimer(); showPhase(i); updateMotionState();
   }));
   function selectTab(index, focus = false) {
     tabs.forEach((tab, i) => {
@@ -157,7 +160,7 @@
     const depth = (Math.cos(angle) + 1) / 2;
     const x = Math.sin(angle) * 105;
     const y = isWatch ? Math.sin(angle) * 35 + 28 : Math.sin(angle) * 35 - 30 * (1-depth);
-    const scale = isWatch ? .4 + depth ** 3 * .8 : .32 + depth ** 3 * .68;
+    const scale = isWatch ? .4 + depth ** 3 * .6 : .32 + depth ** 3 * .68;
     return {
       transform: `translate3d(${x}px,${y}px,${-180*(1-depth)}px) rotateY(${-Math.sin(angle)*(isWatch ? 25 : 18) - (isWatch ? 10 : 0)}deg) rotateZ(${-Math.sin(angle)*(isWatch ? 8 : 7) + (isWatch ? 6 : 0)}deg) scale(${scale})`,
       opacity: depth ** 4 * (delta < -.1 ? .3 : 1),
@@ -166,6 +169,9 @@
     };
   }
   function prepareOrbit() {
+    motions.splice(0).forEach(animation => animation.cancel());
+    root.dataset.orbit = 'static';
+    if (media.matches || !observer) return;
     const items = [...root.querySelectorAll('[data-orbit]'),root.querySelector('.tina-workflow .watch')];
     items.forEach(element => {
       if (!element?.animate) return;
@@ -175,20 +181,10 @@
       const animation = element.animate(keyframes, {duration:3000,fill:'both',easing:'linear'});
       animation.pause(); animation.currentTime = 0; motions.push(animation);
     });
+    if (motions.length === 4) root.dataset.orbit = 'animated';
   }
-  let selectedStage = -1, manualComplete = null;
-  const pendingFace = root.querySelector('.tina-pending-face');
-  const completeFace = root.querySelector('.tina-complete-face');
+  let selectedStage = -1;
   const storyWatch = root.querySelector('.tina-workflow .watch');
-  function setWatchComplete(done) {
-    pendingFace.hidden = done; completeFace.hidden = !done;
-  }
-  on(root.querySelector('[data-complete-sample]'), 'click', () => {
-    manualComplete = true; setWatchComplete(true); root.querySelector('[data-reset-sample]').focus();
-  });
-  on(root.querySelector('[data-reset-sample]'), 'click', () => {
-    manualComplete = false; setWatchComplete(false); root.querySelector('[data-complete-sample]').focus();
-  });
   function updateStory() {
     frame = 0;
     if (destroyed || document.hidden || !storyVisible) return;
@@ -197,17 +193,19 @@
     stages.forEach((stage, i) => { if (stage.getBoundingClientRect().top <= point) index = i; });
     if (index !== selectedStage) {
       selectedStage = index;
-      if (!mobileStory.matches) manualComplete = null;
       watchSection.dataset.topic = String(index);
       jumps.forEach((jump, i) => i === index ? jump.setAttribute('aria-current','step') : jump.removeAttribute('aria-current'));
     }
-    storyWatch.inert = !mobileStory.matches && index !== 2;
-    storyWatch.setAttribute('aria-hidden',String(!mobileStory.matches && index !== 2));
-    root.querySelectorAll('[data-orbit]').forEach(panel => panel.setAttribute('aria-hidden',String(!mobileStory.matches && Number(panel.dataset.orbit) !== index)));
+    const staticOrbit = root.dataset.orbit === 'static';
+    storyWatch.inert = !staticOrbit && !mobileStory.matches && index !== 2;
+    storyWatch.setAttribute('aria-hidden',String(!staticOrbit && !mobileStory.matches && index !== 2));
+    root.querySelectorAll('[data-orbit]').forEach(panel => panel.setAttribute('aria-hidden',String(!staticOrbit && !mobileStory.matches && Number(panel.dataset.orbit) !== index)));
     const rect = stages[index].getBoundingClientRect();
     const progress = media.matches ? 0 : Math.max(0,Math.min(1,(point-rect.top)/Math.max(rect.height,1)));
-    setWatchComplete(manualComplete ?? (!mobileStory.matches && (index === 2 && progress > .76 || index > 2)));
-    const position = Math.min(3,index + progress);
+    const watchRect = storyWatch.getBoundingClientRect();
+    const beatProgress = mobileStory.matches || staticOrbit ? Math.max(0,Math.min(1,(innerHeight*.7-watchRect.top)/Math.max(1,watchRect.height))) : Math.min(1,progress/.8);
+    root.dispatchEvent(new CustomEvent('keww-watch-progress',{detail:{active:mobileStory.matches || staticOrbit || index===2,progress:beatProgress}}));
+    const position = index===2 ? 2 + Math.max(0,(progress-.8)/.2) : Math.min(3,index + progress);
     motions.forEach(animation => { animation.currentTime = position * 1000; });
     const highlights = [...root.querySelectorAll('.concept-highlight')];
     let closest = highlights[0], distance = Infinity;
@@ -219,6 +217,7 @@
     highlights.forEach(highlight => highlight.classList.toggle('is-active',highlight === closest));
   }
   function scheduleStory() { if (!frame && storyVisible && !document.hidden && !destroyed) frame = requestAnimationFrame(updateStory); }
+  on(root,'keww-watch-ready',scheduleStory);
   jumps.forEach((jump, i) => { jump.href = `#stage-${i}`; });
   const observer = typeof IntersectionObserver === 'function' ? new IntersectionObserver(entries => {
     for (const entry of entries) {
@@ -234,7 +233,7 @@
   }
   function preference() {
     stopTimer(); cancelAnimationFrame(frame); frame = 0;
-    cancelAnimationFrame(heroFrame); heroFrame = 0; prepareHero();
+    cancelAnimationFrame(heroFrame); heroFrame = 0; prepareHero(); prepareOrbit();
     if (media.matches) showPhase(3);
     updateMotionState(); scheduleStory();
   }
@@ -243,25 +242,31 @@
   on(window,'scroll',scheduleStory,{passive:true});
   on(window,'scroll',scheduleHero,{passive:true});
   on(window,'resize',scheduleStory,{passive:true});
-  on(window,'resize',scheduleHero,{passive:true});
-  on(desktopHero,'change',() => { prepareHero(); scheduleHero(); });
+  on(window,'resize',() => { measureHero(); scheduleHero(); },{passive:true});
+  on(window.visualViewport,'resize',() => { measureHero(); scheduleHero(); },{passive:true});
+  on(desktopHero,'change',() => { measureHero(); prepareHero(); updateMotionState(); scheduleHero(); });
   on(window,'pagehide',() => {
     destroyed = true; stopTimer(); cancelAnimationFrame(frame); frame = 0;
     motions.forEach(animation => animation.cancel()); observer?.disconnect(); root.dataset.motionActive = 'false';
     cancelAnimationFrame(heroFrame); heroFrame = 0;
     heroMotions.splice(0).forEach(animation => animation.cancel());
+    resizeObserver?.disconnect();
   });
   on(window,'pageshow',event => {
     if (!event.persisted) return;
-    destroyed = false; motions.length = 0; prepareOrbit(); prepareHero(); observer?.observe(scene); observer?.observe(watchSection); lifecycle();
+    destroyed = false; motions.length = 0; prepareOrbit(); measureHero(); prepareHero(); resizeObserver?.observe(sceneFrame); observer?.observe(scene); observer?.observe(watchSection); lifecycle();
   });
   storyWatch.inert = !mobileStory.matches;
   steps.forEach(step => { step.disabled = false; });
   root.dataset.enhanced = 'true';
   selectTab(0);
   prepareOrbit();
+  storyWatch.inert = root.dataset.orbit !== 'static' && !mobileStory.matches;
+  measureHero();
   prepareHero();
   showPhase(media.matches ? 3 : 0);
   observer?.observe(scene); observer?.observe(watchSection);
+  const resizeObserver = typeof ResizeObserver === 'function' ? new ResizeObserver(() => { measureHero(); scheduleHero(); }) : null;
+  resizeObserver?.observe(sceneFrame);
   if (!observer) updateMotionState();
 })();

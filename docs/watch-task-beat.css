@@ -1,0 +1,28 @@
+/* Same authored watch geometry as the earlier workflow; the current orbit owns its position. */
+.tina-home .tina-workflow .watch.watch-task-host{width:min(340px,calc(100% - 80px));height:560px;left:calc((100% - min(340px,calc(100% - 80px)))/2);top:22px;pointer-events:auto;transform-origin:50% 50%!important}
+.watch-task-host{font-family:var(--font-body,-apple-system,BlinkMacSystemFont,sans-serif);color:#28232f}
+.watch-task-host .watch-beat-stage{position:relative;width:100%;height:400px;isolation:isolate}
+.watch-task-host .watch-beat-poster{width:100%;height:100%;object-fit:contain;display:block;opacity:1}
+.watch-task-host .watch-beat-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:0}
+.watch-task-host.is-ready .watch-beat-poster,.watch-task-host.is-ready .watch-beat-fallback-done{opacity:0;visibility:hidden}
+.watch-task-host.is-ready .watch-beat-canvas{opacity:1}
+.watch-task-host .watch-beat-fallback-done{display:none;position:absolute;left:33%;top:34%;width:34%;height:32%;background:#101014;border-radius:14%;transform:rotate(7deg);align-items:center;justify-content:center;flex-direction:column;color:#fff;text-align:center;padding:8px;gap:5px}
+.watch-task-host[data-complete="true"] .watch-beat-fallback-done{display:flex}
+.watch-task-host .watch-beat-fallback-done>span{width:36px;height:36px;border:2px solid #83d58b;border-radius:50%;display:grid;place-items:center;font-size:24px;color:#83d58b}
+.watch-task-host .watch-beat-fallback-done>strong{font-size:11px;line-height:1.2}
+.watch-task-host .watch-beat-fallback-done>small{font-size:8px;color:#d2cddc}
+.watch-task-host .watch-beat-controls{display:flex;justify-content:center;min-height:44px;margin-top:-10px;position:relative;z-index:2}
+.watch-task-host .watch-beat-controls[hidden],.watch-task-host button[hidden]{display:none!important}
+.watch-task-host button{min-height:44px;min-width:min(140px,100%);padding:10px 20px;border:1px solid #65558f;border-radius:6px;background:#65558f;color:#fff;font:700 12px/1.4 var(--font-heading,sans-serif);cursor:pointer}
+.watch-task-host button:hover{background:#4e3c74}
+.watch-task-host button:focus-visible{outline:3px solid #d6b8f6;outline-offset:4px}
+.watch-task-host .watch-beat-record{border:1px solid #dfdce2;border-radius:9px;background:#fff;padding:14px 16px;margin-top:12px;box-shadow:0 10px 24px #32254112;font-size:11px;font-variant-numeric:tabular-nums}
+.watch-task-host .watch-beat-record>div{display:flex;align-items:baseline;justify-content:space-between;gap:14px}
+.watch-task-host .watch-beat-record strong{font-size:11px;font-weight:700}
+.watch-task-host .watch-beat-record small{font-size:8px;color:#6d637a}
+.watch-task-host .watch-beat-record p{font-size:12px;font-weight:600;margin:9px 0 5px;line-height:1.4}
+.watch-task-host .watch-beat-record>span{font-size:10px;color:#65558f}
+.watch-task-host[data-complete="true"] .watch-beat-record>span{color:#32704d}
+.watch-task-host .watch-beat-status{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+@media(max-width:760px){.tina-home #watches .tina-workflow .graphic .watch.watch-task-host{position:relative;inset:auto;width:min(340px,100%);height:auto;margin:15px auto 20px;transform:none!important}.watch-task-host .watch-beat-record{margin-inline:10px}.watch-task-host .watch-beat-stage{height:390px}}
+@media(prefers-reduced-motion:reduce){.watch-task-host .watch-beat-canvas{display:none!important}}

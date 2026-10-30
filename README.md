@@ -3,8 +3,8 @@
 [Open the refined version](https://leozh0u.github.io/keww-ui-review/).
 [Compare the frozen laptop version](https://leozh0u.github.io/keww-laptop-review/).
 
-Tina La's homepage system with a complete desktop opening, keyboard behind the
-editable workspace and a short native-scroll handoff to the phone and watch.
+Tina La's homepage system with a fitted desktop/tablet/phone opening, deeper laptop bezel and keyboard,
+and native-scroll travel that follows the visible layout and zoom.
 The current comparison tries "Every event. Every team. Everything connected."
 with concrete product copy; the old version retains the staffing headline.
 
@@ -16,8 +16,11 @@ private assessment answers and applicant records are excluded.
 
 Existing Cafe Natalie photography accompanies fictional task data. Complete or
 reset the example to see the task count and summary change. This is not employee
-tracking. Watch integration remains in development and Kasheww is in pilot.
-Screens can be replaced with approved UI later.
+tracking. Screens can be replaced with approved UI later. The hero loops while visible
+with one Pause control. The restored cocktail-area watch task animates to
+completion and updates a local manager record; its renderer loads only near
+the watch and stops offscreen or idle. The Kasheww mark uses the existing
+company logo.
 
 The site uses self-hosted Plus Jakarta Sans under the SIL Open Font License and
 installed system body fonts. Font and retained vendor licence notices ship with
