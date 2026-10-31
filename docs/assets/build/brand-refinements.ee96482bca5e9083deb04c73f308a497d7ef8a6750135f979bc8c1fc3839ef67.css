@@ -3,6 +3,7 @@
 .tina-home .scroll-stage .concept-highlight{grid-template-columns:minmax(0,1fr);min-height:clamp(180px,28svh,260px);padding:24px 0;gap:0}
 .tina-home .scroll-stage .concept-highlight>div{min-width:0}
 .tina-home .scroll-stage .concept-highlight h3{max-width:17ch;margin:0;text-wrap:balance}
+.tina-home .scroll-stage .concept-highlight p{font-size:16px;line-height:1.6;color:#6d637a;max-width:38ch;margin:12px 0 0;text-wrap:pretty}
 .tina-home .ks-product-brand{gap:11px;align-items:center;flex-wrap:nowrap;margin-bottom:20px}
 .tina-home .ks-product-mark{width:44px;height:44px;display:block;flex:none}
 .tina-home .ks-product-wordmark{font:750 32px/1.1 var(--font-heading);letter-spacing:-.035em;color:#28232f;white-space:nowrap}
@@ -33,3 +34,21 @@
  .tina-home .end p{font-size:14px;max-width:30ch;margin-top:16px}
  .product-page .pp-kasheww-mark{width:42px;height:42px;margin-bottom:18px}
 }
+
+/* Product captures retain Kasheww's actual application shell and data layout. */
+.tina-home .ks-real-art{padding:0;border:1px solid #dfdce2;border-radius:12px;background:#fff;overflow:hidden;box-shadow:0 16px 32px #39264f12}
+.tina-home .ks-real-art .ks-tabs{display:flex;gap:8px;margin:0;padding:10px 18px 0;border-bottom:1px solid #dfdce2;background:#f7f6f9}
+.tina-home .ks-real-art .ks-tabs button{min-height:44px;min-width:100px;font-size:13px;padding:10px 14px;border-radius:5px 5px 0 0;white-space:nowrap}
+.tina-home .ks-real-art .ks-panel{display:block;padding:0}
+.tina-home .ks-real-art .ks-panel-view{display:block}
+.tina-home .ks-real-art .ks-panel-view[hidden]{display:none!important}
+.tina-home .ks-product-capture{margin:0}
+.tina-home .ks-product-capture picture,.pp-product-capture picture{display:block}
+.tina-home .ks-product-capture img,.pp-product-capture img{display:block;width:100%;height:auto;aspect-ratio:1440/1000;object-fit:contain}
+.tina-home .ks-product-capture figcaption{display:flex;justify-content:space-between;gap:24px;align-items:baseline;padding:18px 22px;border-top:1px solid #dfdce2;background:#fff}
+.tina-home .ks-product-capture figcaption p{font-size:14px;line-height:1.6;margin:0;max-width:65ch;color:#4d445a}
+.tina-home .ks-product-capture figcaption span,.pp-product-capture figcaption{font-size:11px;line-height:1.5;color:#6d637a}
+.tina-home .ks-product-capture figcaption span{flex:none}
+.pp-product-capture{margin:0;border:1px solid #dfdce2;border-radius:10px;overflow:hidden;background:#fff}
+.pp-product-capture figcaption{padding:12px 16px;border-top:1px solid #dfdce2}
+@media(max-width:640px){.tina-home .ks-product-capture img,.pp-product-capture img{aspect-ratio:390/844}.tina-home .ks-real-art .ks-tabs{gap:2px;padding-inline:8px}.tina-home .ks-real-art .ks-tabs button{flex:1;min-width:0;padding-inline:10px}.tina-home .ks-product-capture figcaption{display:block;padding:16px}.tina-home .ks-product-capture figcaption span{display:block;margin-top:10px}.tina-home .scroll-stage .concept-highlight p{font-size:15px;max-width:34ch}}

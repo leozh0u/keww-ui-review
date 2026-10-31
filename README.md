@@ -28,3 +28,10 @@ The site uses self-hosted Plus Jakarta Sans under the SIL Open Font License and
 installed system body fonts. Font and retained vendor licence notices ship with
 the assets. Keyboard controls, reduced-motion views and useful no-JavaScript
 content remain available. Original workwithkeww.com stays live.
+
+Kasheww now shows actual Overview, Menu and Files screens from its recorded
+shipped source, using only a synthetic event. Desktop and phone captures preserve
+the real app UI; website captions are localized and the application pixels are
+English. These are selectable screenshots, not a live embedded app. The ten
+workflow actions have distinct adjacent explanations, and the watch stage no
+longer reserves an empty scroll spacer.

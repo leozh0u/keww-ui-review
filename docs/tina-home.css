@@ -1309,7 +1309,7 @@
 @supports(transform:scale(calc(1px / 1px))){.tina-home .kh-scene-frame{--hero-scale:calc(100cqi / 650px)}}
 @media(prefers-reduced-motion:reduce){.tina-home[data-opening="scroll"] .kh-hero{min-height:calc(100svh - var(--header-height))}.tina-home[data-opening="scroll"] .kh-layout{position:static!important}}
 
-@media(min-width:761px){.tina-home #stage-2{min-height:max(1500px,170svh)}}
+/* The task beat uses its actual copy height; no empty watch-stage spacer. */
 
 .tina-home[data-orbit="static"] #watches .concept-grid>div:last-child{position:static;top:auto}
 .tina-home[data-orbit="static"] #watches .tina-workflow .stage{display:flex;flex-direction:column;height:auto;overflow:visible;padding-block:12px}
