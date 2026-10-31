@@ -786,7 +786,8 @@
 .tina-home .end{padding:34px 27px;min-height:330px;margin-bottom:56px}
 .tina-home .end p{font-size:14px;max-width:310px}}
 .tina-home{--keww-nav-height:80px}
-.tina-home #watches .workflow-jumps{position:sticky;top:var(--keww-nav-height);z-index:50;background:#F7F6F9;padding-top:14px;padding-bottom:0;box-shadow:0 10px 16px #F7F6F9}
+/* Section tabs slide beneath the site header when their sticky container ends. */
+.tina-home #watches .workflow-jumps{position:sticky;top:var(--keww-nav-height);z-index:5;background:#F7F6F9;padding-top:14px;padding-bottom:0;box-shadow:0 10px 16px #F7F6F9}
 .tina-home #watches .concept-grid>div:last-child{top:calc(var(--keww-nav-height) + 78px)}
 @media (min-width:901px) and (max-width:1150px){}
 @media  (max-width:900px){.tina-home{--keww-nav-height:70px}}
