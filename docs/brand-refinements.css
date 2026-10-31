@@ -8,7 +8,7 @@
 .tina-home .ks-product-mark{width:44px;height:44px;display:block;flex:none}
 .tina-home .ks-product-wordmark{font:750 32px/1.1 var(--font-heading);letter-spacing:-.035em;color:#28232f;white-space:nowrap}
 .tina-home .ks-product-wordmark>span{color:#65558f}
-.tina-home .kasheww .kasheww-head h2{margin-top:0}
+.tina-home .kasheww .kasheww-head h2{margin-top:0;font-size:clamp(30px,3.1vw,44px)}
 .tina-home .ks-chrome-brand{display:inline-flex;align-items:center;gap:7px;line-height:1.2}
 .tina-home .ks-chrome-brand>img{display:block;width:22px;height:22px;flex:none}
 .tina-home .ks-chrome-brand .ks-chrome-label{margin-left:4px}
@@ -17,7 +17,7 @@
 .tina-home .end>div{min-width:0;max-width:560px}
 .tina-home .end .section-title{font-size:clamp(32px,3.6vw,46px);line-height:1.14;max-width:18ch;text-wrap:balance}
 .tina-home .end p{margin-top:18px;max-width:38ch;font-size:15px;line-height:1.6}
-.tina-home .end>.button-primary{width:fit-content;min-height:46px;align-self:flex-start;margin:0;white-space:normal;text-align:center;padding:12px 20px;font-size:13px;line-height:1.3}
+.tina-home .end>.button-primary{width:fit-content;min-height:46px;align-self:flex-start;margin:0;white-space:nowrap;text-align:center;padding:12px 20px;font-size:13px;line-height:1.3}
 .product-page .pp-kasheww-mark{display:block;width:48px;height:48px;margin-bottom:22px}
 @media(max-width:760px){
  .tina-home .scroll-stage .concept-intro{font-size:15px;margin-bottom:14px}
@@ -27,8 +27,6 @@
  .tina-home .ks-product-mark{width:38px;height:38px}
  .tina-home .ks-product-wordmark{font-size:28px}
  .tina-home .ks-product-brand{margin-bottom:18px}
- .tina-home .kasheww .kasheww-head h2{font-size:clamp(30px,6vw,40px);line-height:1.16;text-wrap:balance}
- .tina-home .kasheww .kasheww-head h2 br{display:none}
  .tina-home .end{min-height:320px;padding:32px 25px;gap:22px}
  .tina-home .end .section-title{font-size:32px;max-width:17ch}
  .tina-home .end p{font-size:14px;max-width:30ch;margin-top:16px}
@@ -52,3 +50,18 @@
 .pp-product-capture{margin:0;border:1px solid #dfdce2;border-radius:10px;overflow:hidden;background:#fff}
 .pp-product-capture figcaption{padding:12px 16px;border-top:1px solid #dfdce2}
 @media(max-width:640px){.tina-home .ks-product-capture img,.pp-product-capture img{aspect-ratio:390/844}.tina-home .ks-real-art .ks-tabs{gap:2px;padding-inline:8px}.tina-home .ks-real-art .ks-tabs button{flex:1;min-width:0;padding-inline:10px}.tina-home .ks-product-capture figcaption{display:block;padding:16px}.tina-home .ks-product-capture figcaption span{display:block;margin-top:10px}.tina-home .scroll-stage .concept-highlight p{font-size:15px;max-width:34ch}}
+
+/* Short marketing copy should read as a whole, without a stranded final phrase. */
+.tina-home :is(.kh-copy,.way,.staff-inner,.faq-heading,.end) p,
+.tina-home .kasheww-head p,
+.tina-home .scroll-stage .concept-highlight p,
+.tina-home .ks-product-capture figcaption p,
+.product-page .pp-intro,
+.product-page .pp-section :is(p,dd){text-wrap:balance}
+
+@media(max-width:900px){
+ .tina-home .kasheww .kasheww-head{grid-template-columns:minmax(0,1fr);gap:18px}
+ .tina-home .kasheww .kasheww-head>div:nth-child(2){grid-column:1}
+ .tina-home .kasheww .kasheww-head h2{font-size:clamp(26px,7.8vw,40px);line-height:1.16;text-wrap:balance}
+ .tina-home .kasheww .kasheww-head h2 br{display:none}
+}
