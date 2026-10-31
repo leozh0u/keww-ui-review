@@ -18,8 +18,9 @@ private assessment answers and applicant records are excluded.
 Existing Cafe Natalie photography accompanies fictional task data. Complete or
 reset the example to see the task count and summary change. This is not employee
 tracking. Screens can be replaced with approved UI later. The hero loops while visible
-with one Pause control. The restored cocktail-area watch task animates to
-completion and updates a local manager record; its renderer loads only near
+with one Pause control. The detailed curved-band watch follows a continuous, shared scroll handoff. Its
+case, crown and buckle match the loading/fallback images. The cocktail-area task
+animates to completion and updates a local manager record; its renderer loads only near
 the watch and stops offscreen or idle. The Kasheww mark uses the existing
 company logo.
 

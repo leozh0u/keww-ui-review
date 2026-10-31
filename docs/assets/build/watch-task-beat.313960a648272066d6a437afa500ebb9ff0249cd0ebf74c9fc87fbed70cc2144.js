@@ -15,17 +15,20 @@
   let manual = null, active = false, progress = 0, loaded = false, destroyed = false, done = false, near = false;
   function load() {
     const source = document.querySelector('meta[name="watch-beat-script"]')?.content;
-    if (loaded || !active || !near || motion.matches || navigator.connection?.saveData || !source || destroyed) return;
+    if (loaded || !near || motion.matches || navigator.connection?.saveData || !source || destroyed) return;
     loaded = true;
     const script = document.createElement('script'); script.src = source; script.defer = true;
     script.onerror = () => { beat.dataset.rendering = 'fallback'; };
     document.body.append(script);
   }
   function sync(announce = false) {
-    done = manual ?? (progress >= .64);
+    done = manual ?? (!motion.matches && progress >= .64);
     beat.dataset.complete = String(done); beat.dataset.active = String(active); beat.dataset.progress = String(progress);
-    beat.querySelector('[data-watch-beat-record]').textContent = done ? copy.completed : copy.assigned;
-    completeButton.hidden = done; resetButton.hidden = !done;
+    const record = beat.querySelector('[data-watch-beat-record]');
+    const label = done ? copy.completed : copy.assigned;
+    if (record.textContent !== label) record.textContent = label;
+    if (completeButton.hidden !== done) completeButton.hidden = done;
+    if (resetButton.hidden === done) resetButton.hidden = !done;
     if (announce) beat.querySelector('[data-watch-beat-status]').textContent = done ? copy.done : copy.reset;
     beat.dispatchEvent(new CustomEvent('watch-beat:update', {detail:{active,progress,done}}));
     load();

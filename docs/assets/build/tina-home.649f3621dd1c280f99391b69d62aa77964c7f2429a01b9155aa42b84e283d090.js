@@ -151,6 +151,7 @@
   });
   // The source orbit is sampled into paused Web Animations. Scroll adjusts time;
   // no frame loop runs while the page is still, hidden, or outside the section.
+  const smooth = p => p * p * p * (p * (p * 6 - 15) + 10);
   function orbitPose(position, index, isWatch) {
     let delta = index - position;
     while (delta > 2) delta -= 4;
@@ -162,8 +163,7 @@
     const scale = isWatch ? .4 + depth ** 3 * .6 : .32 + depth ** 3 * .68;
     return {
       transform: `translate3d(${x}px,${y}px,${-180*(1-depth)}px) rotateY(${-Math.sin(angle)*(isWatch ? 25 : 18) - (isWatch ? 10 : 0)}deg) rotateZ(${-Math.sin(angle)*(isWatch ? 8 : 7) + (isWatch ? 6 : 0)}deg) scale(${scale})`,
-      opacity: depth ** 4 * (delta < -.1 ? .3 : 1),
-      filter: `blur(${(1-depth)*3}px)`,
+      opacity: 1 - smooth(Math.min(1, Math.abs(delta))),
       zIndex: String(Math.round(depth * 10) + (isWatch ? 1 : 0))
     };
   }
@@ -182,38 +182,47 @@
     });
     if (motions.length === 4) root.dataset.orbit = 'animated';
   }
-  let selectedStage = -1;
+  let selectedStage = -1, orbitTime = null, beatTime = null, storyTime = 0;
+  const highlights = [...root.querySelectorAll('.concept-highlight')];
   const storyWatch = root.querySelector('.tina-workflow .watch');
-  function updateStory() {
+  function updateStory(now) {
     frame = 0;
     if (destroyed || document.hidden || !storyVisible) return;
     const point = innerHeight * .42;
     let index = 0;
     stages.forEach((stage, i) => { if (stage.getBoundingClientRect().top <= point) index = i; });
-    if (index !== selectedStage) {
-      selectedStage = index;
-      watchSection.dataset.topic = String(index);
-      jumps.forEach((jump, i) => i === index ? jump.setAttribute('aria-current','step') : jump.removeAttribute('aria-current'));
-    }
     const staticOrbit = root.dataset.orbit === 'static';
-    storyWatch.inert = !staticOrbit && !mobileStory.matches && index !== 2;
-    storyWatch.setAttribute('aria-hidden',String(!staticOrbit && !mobileStory.matches && index !== 2));
-    root.querySelectorAll('[data-orbit]').forEach(panel => panel.setAttribute('aria-hidden',String(!staticOrbit && !mobileStory.matches && Number(panel.dataset.orbit) !== index)));
     const rect = stages[index].getBoundingClientRect();
     const progress = media.matches ? 0 : Math.max(0,Math.min(1,(point-rect.top)/Math.max(rect.height,1)));
     const watchRect = storyWatch.getBoundingClientRect();
-    const beatProgress = mobileStory.matches || staticOrbit ? Math.max(0,Math.min(1,(innerHeight*.7-watchRect.top)/Math.max(1,watchRect.height))) : Math.min(1,progress/.8);
-    root.dispatchEvent(new CustomEvent('keww-watch-progress',{detail:{active:mobileStory.matches || staticOrbit || index===2,progress:beatProgress}}));
-    const position = index===2 ? 2 + Math.max(0,(progress-.8)/.2) : Math.min(3,index + progress);
-    motions.forEach(animation => { animation.currentTime = position * 1000; });
-    const highlights = [...root.querySelectorAll('.concept-highlight')];
+    const beatProgress = mobileStory.matches || staticOrbit ? Math.max(0,Math.min(1,(innerHeight*.7-watchRect.top)/Math.max(1,watchRect.height))) : index < 2 ? 0 : index > 2 ? 1 : Math.min(1,progress/.8);
     let closest = highlights[0], distance = Infinity;
     for (const highlight of highlights) {
       const box = highlight.getBoundingClientRect();
       const next = Math.abs(box.top + box.height / 2 - innerHeight * .55);
       if (next < distance) { closest = highlight; distance = next; }
     }
+    const position = index===2 ? 2 + smooth(Math.max(0,(progress-.8)/.2)) : Math.min(3,index + smooth(progress));
+    // Both the DOM orbit and the 3D face use this same finite settling clock.
+    // No independent 30fps or delayed model interpolation can drift behind it.
+    const blend = media.matches || staticOrbit || mobileStory.matches || !storyTime ? 1 : 1 - Math.exp(-Math.min(64, now-storyTime)/65);
+    storyTime = now;
+    orbitTime = orbitTime === null ? position*1000 : orbitTime + (position*1000-orbitTime)*blend;
+    beatTime = beatTime === null ? beatProgress : beatTime + (beatProgress-beatTime)*blend;
+    const settling = Math.abs(position*1000-orbitTime) > .1 || Math.abs(beatProgress-beatTime) > .0005;
+    if (!settling) { orbitTime = position*1000; beatTime = beatProgress; }
+    if (index !== selectedStage) {
+      selectedStage = index;
+      watchSection.dataset.topic = String(index);
+      jumps.forEach((jump, i) => i === index ? jump.setAttribute('aria-current','step') : jump.removeAttribute('aria-current'));
+    }
+    storyWatch.inert = !staticOrbit && !mobileStory.matches && index !== 2;
+    storyWatch.setAttribute('aria-hidden',String(!staticOrbit && !mobileStory.matches && index !== 2));
+    root.querySelectorAll('[data-orbit]').forEach(panel => panel.setAttribute('aria-hidden',String(!staticOrbit && !mobileStory.matches && Number(panel.dataset.orbit) !== index)));
+    motions.forEach(animation => { animation.currentTime = orbitTime; });
+    root.dispatchEvent(new CustomEvent('keww-watch-progress',{detail:{active:mobileStory.matches || staticOrbit || (orbitTime>1150 && orbitTime<2950),progress:beatTime}}));
     highlights.forEach(highlight => highlight.classList.toggle('is-active',highlight === closest));
+    if (settling) scheduleStory();
   }
   function scheduleStory() { if (!frame && storyVisible && !document.hidden && !destroyed) frame = requestAnimationFrame(updateStory); }
   on(root,'keww-watch-ready',scheduleStory);

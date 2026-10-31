@@ -970,7 +970,7 @@
 .tina-home .tina-workflow .simple-ui .simple-footer{margin-top:12px;padding-top:10px}
 @media  (max-width:520px){.tina-home .tina-workflow .task-bar{font-size:8px;padding:6px}
 .tina-home .tina-workflow .task-details{gap:15px}}
-.tina-home .tina-workflow .orbit-product{position:absolute;width:88%;left:6%;top:65px;background:#fff;border:1px solid #DED4E9;border-radius:14px;overflow:hidden;box-shadow:0 22px 48px #39264F16;transform-origin:50% 50%;will-change:transform,filter;pointer-events:none;backface-visibility:hidden}
+.tina-home .tina-workflow .orbit-product{position:absolute;width:88%;left:6%;top:65px;background:#fff;border:1px solid #DED4E9;border-radius:14px;overflow:hidden;box-shadow:0 22px 48px #39264F16;transform-origin:50% 50%;will-change:transform,opacity;pointer-events:none;backface-visibility:hidden}
 .tina-home .tina-workflow .orbit-chrome{display:flex;justify-content:space-between;align-items:center;padding:12px 18px;background:#FAF8FC;border-bottom:1px solid #EBE4F2;font-size:9px;color:#9B8CA7}
 .tina-home .tina-workflow .orbit-chrome b{color:#65558F;letter-spacing:.06em;font-size:11px}
 .tina-home .tina-workflow .orbit-body{height:405px;overflow:hidden}
@@ -978,7 +978,7 @@
 .tina-home .tina-workflow .graphic[data-phase="2"] .watch{transition:opacity .5s,transform .18s linear!important}
 @media  (max-width:520px){.tina-home .tina-workflow .orbit-product{top:55px}
 .tina-home .tina-workflow .orbit-body{height:385px}}
-.tina-home .tina-workflow .orbit-product{transition:none!important;will-change:transform,filter}
+.tina-home .tina-workflow .orbit-product{transition:none!important;will-change:transform,opacity}
 .tina-home .tina-workflow .stage{perspective:1400px}
 .tina-home .tina-workflow .stage{isolation:isolate;mask-image:linear-gradient(to right,transparent 0%,#000 7%,#000 93%,transparent 100%);-webkit-mask-image:linear-gradient(to right,transparent 0%,#000 7%,#000 93%,transparent 100%)}
 .tina-home .tina-workflow .orbit-product{box-shadow:0 18px 35px #39264F12}
@@ -1064,7 +1064,7 @@
 .tina-home .tina-workflow .stage:after{display:none}
 .tina-home .tina-workflow .orbit-product{box-shadow:0 16px 32px #39264F12}
 .tina-home .tina-workflow .orbit-product{opacity:var(--orbit-opacity,1);transform-style:preserve-3d}
-.tina-home .tina-workflow .graphic .watch,.tina-home .tina-workflow .graphic[data-phase="2"] .watch,.tina-home .tina-workflow .graphic[data-phase="3"] .watch{transform:translate3d(var(--path-x,0px),var(--path-y,28px),0) rotateY(var(--path-yaw,-10deg)) rotateZ(var(--path-roll,6deg)) scale(var(--path-scale,.4));opacity:var(--path-opacity,0);filter:blur(var(--path-blur,0px));transition:none!important;transform-origin:86px 221px!important;will-change:transform,filter}
+.tina-home .tina-workflow .graphic .watch,.tina-home .tina-workflow .graphic[data-phase="2"] .watch,.tina-home .tina-workflow .graphic[data-phase="3"] .watch{transform:translate3d(var(--path-x,0px),var(--path-y,28px),0) rotateY(var(--path-yaw,-10deg)) rotateZ(var(--path-roll,6deg)) scale(var(--path-scale,.4));opacity:var(--path-opacity,0);filter:blur(var(--path-blur,0px));transition:none!important;transform-origin:86px 221px!important;will-change:transform,opacity}
 .tina-home .tina-workflow .graphic .watch .band{top:-220px;height:880px}
 .tina-home .tina-workflow .graphic .watch .band{top:-100px!important;height:660px!important;left:39px;width:94px;border-radius:0;background:linear-gradient(90deg,#29282D 0%,#414045 18%,#3B3A3F 78%,#29282D 100%);box-shadow:4px 0 0 #27262B;opacity:var(--strap-opacity,1);transition:none}
 .tina-home .tina-workflow .graphic .watch .band:before{top:155px;left:-3px;width:100px;height:27px;border:5px solid #605D68;border-radius:5px;background:transparent;box-shadow:0 2px 0 #252329}
@@ -1316,3 +1316,6 @@
 .tina-home[data-orbit="static"] #watches .tina-workflow .orbit-product{position:relative;inset:auto;width:94%;margin:12px auto;opacity:1!important;visibility:visible;transform:none!important;filter:none!important}
 .tina-home[data-orbit="static"] #watches .tina-workflow .orbit-body{height:auto;min-height:300px;overflow:visible}
 .tina-home[data-orbit="static"] #watches .tina-workflow .graphic .watch{position:relative;inset:auto;margin:30px auto;opacity:1!important;visibility:visible;transform:none!important;filter:none!important}
+
+/* Keep the live canvas on a compositor layer; blur rerasterizes it during orbit. */
+.tina-home[data-orbit="animated"] .tina-workflow .orbit-product,.tina-home[data-orbit="animated"] .tina-workflow .graphic .watch{filter:none!important}
