@@ -12,6 +12,33 @@
   const button = find('toggle');
   const row = find('table');
   let complete = false;
+  const areas = [...scene.querySelectorAll('[data-service-select]')];
+  const detail = find('detail');
+  let selected = 2;
+  function selectArea(index) {
+    selected = index;
+    areas.forEach((area, i) => {
+      area.setAttribute('aria-pressed', String(i === index));
+    });
+    const selectedArea = areas[index];
+    find('detail-title').textContent = selectedArea.querySelector('strong').textContent;
+    find('detail-state').textContent = `${selectedArea.querySelector('.service-task-state').textContent} · ${selectedArea.querySelector('.service-task-count').textContent}`;
+    find('controls').hidden = index !== 2;
+  }
+  for (const [index, area] of areas.entries()) {
+    area.setAttribute('role', 'button');
+    area.setAttribute('aria-controls', 'service-area-detail');
+    area.addEventListener('click', event => {
+      event.preventDefault();
+      selectArea(index);
+    });
+    area.addEventListener('keydown', event => {
+      if (event.key === ' ') { event.preventDefault(); area.click(); }
+    });
+  }
+  detail.hidden = false;
+  find('hint').hidden = false;
+  selectArea(selected);
   button.addEventListener('click', () => {
     complete = !complete;
     const state = Number(complete);
@@ -28,6 +55,7 @@
     row.classList.toggle('in-progress', !complete);
     button.textContent = complete ? copy.reset : copy.action;
     find('announcement').textContent = copy.announce[state];
+    selectArea(selected);
   });
   find('controls').hidden = false;
 })();

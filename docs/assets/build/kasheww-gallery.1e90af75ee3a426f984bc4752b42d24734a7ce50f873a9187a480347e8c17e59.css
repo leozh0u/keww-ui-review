@@ -1,0 +1,15 @@
+/* The product page owns the complete real-application tour. */
+.pp-kasheww .ks-real-art{min-width:0;border:1px solid #dfdce2;border-radius:10px;overflow:hidden;background:#fff;box-shadow:0 12px 32px #39264f0c}
+.pp-kasheww .ks-tabs{display:flex;gap:4px;padding:9px 10px 0;border-bottom:1px solid #dfdce2;background:#f7f6f9}
+.pp-kasheww .ks-tabs[hidden],.pp-kasheww .ks-panel-view[hidden]{display:none}
+.pp-kasheww .ks-tabs button{flex:1;min-width:0;min-height:44px;padding:10px 12px;border:0;border-radius:5px 5px 0 0;background:transparent;color:#65558f;font:600 12px/1.5 var(--font-heading);cursor:pointer;white-space:nowrap}
+.pp-kasheww .ks-tabs button[aria-selected=true]{background:#fff;box-shadow:inset 0 -2px #65558f;color:#28232f}
+.pp-kasheww .ks-tabs button:hover{background:#eeebf4}
+.pp-kasheww .ks-tabs button:focus-visible{outline:2px solid #65558f;outline-offset:-3px}
+.pp-kasheww .ks-product-capture{margin:0}
+.pp-kasheww .ks-product-capture picture,.pp-kasheww .ks-product-capture img{display:block;width:100%;height:auto}
+.pp-kasheww .ks-product-capture figcaption{min-height:114px;display:flex;flex-direction:column;gap:12px;padding:20px 22px;border-top:1px solid #dfdce2}
+.pp-kasheww .ks-product-capture figcaption p{margin:0;font-size:13px;line-height:1.6;color:#4d445a;text-wrap:pretty}
+.pp-kasheww .ks-product-capture figcaption>span{font-size:10px;line-height:1.5;color:#6d637a}
+.pp-kasheww .ks-panel-view:not([hidden])+.ks-panel-view:not([hidden]){border-top:1px solid #dfdce2}
+@media(max-width:760px){.pp-kasheww .ks-product-capture figcaption{min-height:130px;padding:18px}}

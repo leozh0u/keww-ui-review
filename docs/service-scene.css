@@ -1,83 +1,116 @@
-/* Existing Cafe Natalie photography and fictional task progress, never employee analytics. */
-.tina-home .service-scene{padding-top:64px;padding-bottom:12px}
-.tina-home .service-scene-grid{display:grid;grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);align-items:stretch;gap:28px}
-.tina-home .service-photograph{margin:0;min-height:590px;overflow:hidden;border-radius:10px;background:#efedf1}
-.tina-home .service-photograph img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 40%}
-.tina-home .service-board{min-width:0;background:#fff;border:1px solid #dfdce2;border-radius:10px;padding:24px 28px 26px;box-shadow:0 12px 32px #34254309;color:#28232f;font-variant-numeric:tabular-nums}
-.tina-home .service-board-header{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-bottom:18px;border-bottom:1px solid #eae6ef;font-size:12px;color:#65558f}
-.tina-home .service-board-header>span:first-child{font:800 15px/1.2 var(--font-heading);letter-spacing:-.03em}
-.tina-home .service-board-header>span:last-child{color:#6d637a}
-.tina-home .service-board-summary{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 0 20px}
-.tina-home .service-event{font-size:12px;color:#6d637a;margin:0 0 6px}
-.tina-home .service-board-summary h3{font:700 clamp(22px,2vw,28px)/1.2 var(--font-heading);letter-spacing:-.035em;margin:0}
-.tina-home .service-summary-number{flex:none;text-align:right;display:flex;flex-direction:column;gap:4px}
-.tina-home .service-summary-number strong{font:700 37px/1.1 var(--font-heading);letter-spacing:-.04em}
-.tina-home .service-summary-number .service-total-denominator{font-size:18px;color:#6d637a;letter-spacing:-.02em}
+/* Supplied temporary scene. Media, task overlays and editable sample data stay separate. */
+.tina-home .service-scene{padding-top:72px;padding-bottom:24px}
+.tina-home .service-floor-media{position:relative;isolation:isolate;border-radius:14px;background:#eeebf1}
+.tina-home .service-floor-image{display:block;width:100%;height:auto;border-radius:14px}
+.tina-home .service-board{position:absolute;top:24px;right:24px;width:310px;max-width:calc(100% - 48px);padding:22px 24px;background:#fff;border:1px solid #e3ddea;border-radius:12px;box-shadow:0 12px 32px #24192b14;color:#28232f;font-variant-numeric:tabular-nums}
+.tina-home .service-board-header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}
+.tina-home .service-board-header h3{margin:0;font:700 12px/1.4 var(--font-heading);color:#65558f}
+.tina-home .service-board-header>span{color:#6d637a;font-size:10px}
+.tina-home .service-summary-number{display:flex;align-items:baseline;gap:9px}
+.tina-home .service-summary-number strong{font:700 36px/1.1 var(--font-heading);letter-spacing:-.04em}
+.tina-home .service-total-denominator{font-size:19px;color:#6d637a;letter-spacing:-.02em}
 .tina-home .service-summary-number>span{font-size:11px;color:#6d637a}
-.tina-home .service-progress-line{display:flex;align-items:center;gap:14px}
+.tina-home .service-summary-number>span:last-child{font-size:15px;font-weight:700;color:#65558f;margin-left:auto}
+.tina-home .service-progress-line{margin-top:18px}
 .tina-home .service-progress-line progress{appearance:none;-webkit-appearance:none;display:block;width:100%;height:6px;border:0;border-radius:4px;overflow:hidden;background:#eee9f5;color:#65558f;accent-color:#65558f}
 .tina-home .service-progress-line progress::-webkit-progress-bar{background:#eee9f5;border-radius:4px}
 .tina-home .service-progress-line progress::-webkit-progress-value{background:#65558f;border-radius:4px;transition:width .22s ease-out}
 .tina-home .service-progress-line progress::-moz-progress-bar{background:#65558f;border-radius:4px}
-.tina-home .service-progress-line>span{font-size:12px;font-weight:700;color:#65558f;min-width:34px;text-align:right}
-.tina-home .service-summary-status{display:flex;gap:22px;margin:12px 0 20px;font-size:11px;color:#6d637a}
+.tina-home .service-summary-status{display:flex;justify-content:space-between;gap:12px;margin-top:12px;font-size:10px;color:#6d637a}
 .tina-home .service-summary-status>span:first-child{color:#65558f}
-.tina-home .service-task-list{list-style:none;padding:0;margin:0}
-.tina-home .service-task-row{display:flex;align-items:center;gap:13px;padding:14px 0;border-top:1px solid #ece8f0;min-height:65px}
-.tina-home .service-task-icon{display:grid;place-items:center;width:29px;height:29px;border-radius:7px;background:#f3effc;color:#65558f;flex:none}
-.tina-home .service-task-icon svg{display:block;width:20px;height:20px}
+.tina-home .service-task-list{list-style:none;margin:0;padding:0}
+.tina-home .service-task-row{position:absolute;min-width:142px;max-width:210px}
+.tina-home .service-area-0{left:17%;top:27%}
+.tina-home .service-area-1{left:19%;top:70%}
+.tina-home .service-area-2{left:71%;top:76%}
+.tina-home .service-area-3{left:66%;top:44%}
+.tina-home .service-area-4{left:43%;top:47%}
+.tina-home .service-area{display:flex;align-items:center;gap:10px;padding:12px 15px;background:#fff;border:1px solid #e3ddea;border-radius:9px;box-shadow:0 6px 22px #24192b12;color:#28232f;text-decoration:none;transition:transform .18s ease-out,border-color .18s ease-out;min-height:64px}
+.tina-home .service-area:hover{transform:translateY(-3px);border-color:#65558f}
+.tina-home .service-area[aria-pressed=true]{border-color:#65558f;box-shadow:0 5px 22px #24192b20}
+.tina-home .service-area:focus-visible,.tina-home .service-complete:focus-visible{outline:3px solid #65558f;outline-offset:4px}
+.tina-home .service-task-icon{display:grid;place-items:center;width:25px;height:25px;border-radius:50%;background:#f3effc;color:#65558f;flex:none}
+.tina-home .service-task-icon svg{display:block;width:18px;height:18px}
 .tina-home .service-icon-done{display:none}
 .tina-home .service-task-row.is-done .service-icon-done{display:block}
 .tina-home .service-task-row.is-done .service-icon-pending{display:none}
 .tina-home .service-task-row.is-done .service-task-icon{background:#eaf4ee;color:#32704d}
 .tina-home .service-task-row.needs-review .service-task-icon{background:#fff2d8;color:#79591d}
-.tina-home .service-task-row>div{min-width:0;flex:1}
-.tina-home .service-task-row strong{font-size:13px;font-weight:600;line-height:1.3;display:block}
-.tina-home .service-task-state{font-size:11px;color:#6d637a;display:block;margin-top:3px;line-height:1.4}
-.tina-home .service-task-count{font-size:13px;white-space:nowrap;font-weight:600;color:#65558f}
-.tina-home .service-task-row.needs-review .service-task-count{color:#79591d}
-.tina-home .service-try{display:flex;align-items:center;gap:16px;min-height:44px;margin-top:19px}
-.tina-home .service-try[hidden]{display:none}
-.tina-home .service-complete{min-width:200px;min-height:44px;border:1px solid #65558f;border-radius:6px;color:#fff;background:#65558f;padding:11px 16px;font:700 12px/1.5 var(--font-heading);cursor:pointer}
+.tina-home .service-area-label{min-width:0;display:grid;grid-template-columns:auto auto;column-gap:9px;row-gap:4px}
+.tina-home .service-area strong{font:700 12px/1.35 var(--font-heading);grid-column:1/-1}
+.tina-home .service-task-count{font-size:11px;white-space:nowrap;font-weight:600;color:#65558f}
+.tina-home .service-task-state{font-size:10px;line-height:1.5;color:#6d637a}
+.tina-home .service-scene-under{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding-block:12px}
+.tina-home .service-scene-note,.tina-home .service-scene-hint{font-size:11px;line-height:1.6;color:#6d637a;margin:0}
+.tina-home .service-detail{display:flex;align-items:center;justify-content:space-between;gap:28px;padding:22px 26px;background:#f7f5fa;border:1px solid #e5dfec;border-radius:10px;min-height:125px}
+.tina-home .service-detail>div:first-child>span{font-size:11px;color:#6d637a}
+.tina-home .service-detail h3{font:700 19px/1.4 var(--font-heading);margin:5px 0;color:#28232f}
+.tina-home .service-detail p{margin:0;font-size:12px;color:#65558f}
+.tina-home .service-try{display:flex;align-items:center;gap:18px}
+.tina-home .service-complete{min-width:200px;min-height:44px;border:1px solid #65558f;border-radius:6px;color:#fff;background:#65558f;padding:11px 16px;font:700 12px/1.5 var(--font-heading);cursor:pointer;white-space:nowrap}
 .tina-home .service-complete:hover{background:#4e3c74;border-color:#4e3c74}
-.tina-home .service-complete:focus-visible{outline:3px solid #65558f;outline-offset:4px}
-.tina-home .service-try>span{font-size:11px;line-height:1.5;color:#6d637a;max-width:20ch}
-.tina-home .service-scene-note{font-size:11px;line-height:1.6;color:#6d637a;margin:13px 0 0;max-width:90ch}
+.tina-home .service-try>span{font-size:11px;line-height:1.5;color:#6d637a;max-width:22ch}
 .tina-home .service-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
-/* A real service photograph replaces the generated closing scene without stretching it. */
+.tina-home .service-data-preview{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:80px;padding-block:96px 36px}
+.tina-home .service-data-copy h2{font:700 clamp(28px,3vw,44px)/1.2 var(--font-heading);letter-spacing:-.035em;margin:0 0 20px;text-wrap:balance;max-width:16ch}
+.tina-home .service-data-copy>p{font-size:15px;line-height:1.7;color:#6d637a;max-width:46ch;margin:0 0 24px;text-wrap:pretty}
+.tina-home .service-data-copy>a{display:inline-flex;align-items:center;gap:22px;color:#65558f;font:700 14px/1.5 var(--font-heading);text-decoration:none;min-height:44px}
+.tina-home .service-data-copy>a:hover{text-decoration:underline;text-underline-offset:5px}
+.tina-home .service-data-example{font-variant-numeric:tabular-nums;min-width:0;padding-block:28px;border-top:1px solid #dcd5e5;border-bottom:1px solid #dcd5e5}
+.tina-home .service-example-task{display:flex;justify-content:space-between;align-items:baseline;gap:20px;font:700 15px/1.5 var(--font-heading);margin:0 0 28px;color:#28232f}
+.tina-home .service-example-task>span{font:400 10px/1.5 var(--font-body);color:#6d637a}
+.tina-home .service-timeline{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));list-style:none;padding:0;margin:0 0 24px;gap:0}
+.tina-home .service-timeline li{position:relative;display:flex;flex-direction:column;gap:7px;padding-top:23px;border-top:2px solid #c8bed9}
+.tina-home .service-timeline li:before{content:"";position:absolute;width:8px;height:8px;border:3px solid #fff;background:#65558f;border-radius:50%;top:-8px;left:0}
+.tina-home .service-timeline time{font:700 17px/1.4 var(--font-heading);color:#28232f}
+.tina-home .service-timeline span{font-size:12px;color:#6d637a}
+.tina-home .service-data-comparison{display:flex;flex-direction:column;gap:7px;margin:0;color:#6d637a;font-size:11px;line-height:1.6}
+.tina-home .service-data-comparison strong{color:#65558f;font-size:13px;font-weight:600}
+.tina-home .service-detail[hidden],.tina-home .service-try[hidden],.tina-home .service-scene-hint[hidden]{display:none}
+/* Existing real service photography stays on the closing CTA. */
 .tina-home .end:before{background-color:#332441;background-image:url('/keww-ui-review/assets/photos/staff-two.86c52ea9683533e6041ce38ef8c31242c763f1a14439a2207d7d3562ad435fbb.webp');background-repeat:no-repeat;background-size:auto 100%;background-position:right center}
 .tina-home .end:after{background:linear-gradient(90deg,#332441 0%,#332441 42%,#332441bb 67%,#33244122 100%)}
-@media(max-width:1050px){
-.tina-home .service-scene-grid{grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);gap:20px}
-.tina-home .service-board{padding-inline:22px}
-.tina-home .service-board-summary{align-items:flex-start;gap:16px}
-.tina-home .service-try{align-items:flex-start;flex-direction:column;gap:9px}
-.tina-home .service-try>span{max-width:none}
+@media(max-width:1100px){
+.tina-home .service-task-row{min-width:125px;max-width:175px}
+.tina-home .service-area{padding:10px 12px;gap:7px;min-height:58px}
+.tina-home .service-area-label{column-gap:7px}
+.tina-home .service-area strong{font-size:11px}
+.tina-home .service-task-count{font-size:10px}
+.tina-home .service-task-state{display:none}
+.tina-home .service-board{width:280px;top:18px;right:18px;padding:18px}
+.tina-home .service-area-0{left:14%;top:26%}
+.tina-home .service-area-1{left:16%;top:73%}
+.tina-home .service-area-2{left:70%;top:77%}
+.tina-home .service-area-3{left:68%;top:46%}
+.tina-home .service-area-4{left:42%;top:49%}
+.tina-home .service-data-preview{gap:48px}
+.tina-home .service-try>span{display:none}
 }
 @media(max-width:760px){
-.tina-home .service-scene{padding-top:44px}
-.tina-home .service-scene-grid{grid-template-columns:minmax(0,1fr);gap:18px}
-.tina-home .service-photograph{min-height:0;height:330px}
-.tina-home .service-photograph img{object-position:50% 42%}
-.tina-home .service-board{padding:20px}
-.tina-home .service-board-summary{padding-block:20px 18px}
-.tina-home .service-board-summary h3{font-size:23px}
-.tina-home .service-summary-number strong{font-size:32px}
-.tina-home .service-task-row{min-height:64px;gap:11px}
-.tina-home .service-complete{width:100%;min-width:0}
-.tina-home .service-try{align-items:stretch}
-.tina-home .service-scene-note{font-size:10px}
+.tina-home .service-scene{padding-top:48px}
+.tina-home .service-floor-media{display:grid;grid-template-columns:minmax(0,1fr);border:1px solid #e3ddea;overflow:hidden}
+.tina-home .service-floor-image{border-radius:0;grid-row:1}
+.tina-home .service-board{position:static;max-width:none;width:auto;margin:0;padding:24px 20px;border:0;border-radius:0;box-shadow:none;grid-row:2}
+.tina-home .service-task-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:0 18px 20px;grid-row:3}
+.tina-home .service-task-row{position:static;min-width:0;max-width:none}
+.tina-home .service-area{height:100%;padding:12px 10px;box-shadow:none}
+.tina-home .service-area strong{font-size:11px}
+.tina-home .service-task-count{font-size:11px}
+.tina-home .service-area:hover{transform:none}
+.tina-home .service-scene-under{flex-direction:column;gap:5px;padding-block:12px 18px}
+.tina-home .service-detail{align-items:flex-start;flex-direction:column;gap:18px;padding:20px;min-height:185px}
+.tina-home .service-try,.tina-home .service-complete{width:100%;min-width:0}
+.tina-home .service-data-preview{grid-template-columns:minmax(0,1fr);gap:32px;padding-block:64px 16px}
+.tina-home .service-data-copy h2{max-width:none;font-size:31px;margin-bottom:16px}
+.tina-home .service-data-copy>p{max-width:48ch;margin-bottom:15px}
+.tina-home .service-example-task{font-size:13px;gap:16px}
+.tina-home .service-example-task>span{max-width:10ch;text-align:right}
+.tina-home .service-timeline time{font-size:15px}
+.tina-home .service-timeline span{font-size:11px}
 .tina-home .end:before{background-size:cover;background-position:55% 35%}
 .tina-home .end:after{background:#332441c7}
 }
-@media(max-width:380px){
-.tina-home .service-board{padding:18px 16px}
-.tina-home .service-board-summary{gap:10px}
-.tina-home .service-board-summary h3{font-size:20px;max-width:10ch}
-.tina-home .service-summary-number strong{font-size:29px}
-.tina-home .service-summary-number>span{font-size:10px}
-.tina-home .service-summary-status{gap:15px;font-size:10px}
-.tina-home .service-task-row strong,.tina-home .service-task-count{font-size:12px}
-.tina-home .service-task-state{font-size:10px}
+@media(prefers-reduced-motion:reduce){
+.tina-home .service-progress-line progress::-webkit-progress-value,.tina-home .service-area{transition:none}
+.tina-home .service-area:hover{transform:none}
 }
-@media(prefers-reduced-motion:reduce){.tina-home .service-progress-line progress::-webkit-progress-value{transition:none}}

@@ -449,7 +449,8 @@
 .tina-home .workflow-scene-wrap{padding-bottom:40px}}
 .tina-home #find-workers{padding:100px 0 108px;background:#fff}
 .tina-home .three-intro{grid-template-columns:.95fr 1.05fr;gap:100px;align-items:start}
-.tina-home .business-choice-heading{position:sticky;top:120px}
+.tina-home .business-choice-heading{align-self:start}
+@media(min-width:761px) and (min-height:640px){.tina-home .business-choice-heading{position:sticky;top:120px}}
 .tina-home .choice-eyebrow{display:block;color:#8a7b9b;font-size:10px;letter-spacing:.14em;font-weight:600;margin-bottom:22px}
 .tina-home .business-choice-heading .section-title{font-size:clamp(34px,3.3vw,48px);line-height:1.16;letter-spacing:-1.8px}
 .tina-home .business-choice-heading p{max-width:360px;margin-top:24px;font-size:16px;line-height:1.8;color:#817789}

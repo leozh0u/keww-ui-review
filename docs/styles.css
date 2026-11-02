@@ -249,3 +249,7 @@ html{scrollbar-color:#65558F #F6F6F8}
 @media(max-width:1000px){.navigation{gap:24px}.navigation .utility-work{font-size:14px}}
 @media(max-width:680px){.navigation{gap:6px;justify-content:space-between;flex-wrap:wrap}.navigation .utility-work{font-size:13px;padding:10px 9px}.header-tools{gap:12px}}
 @media(max-width:370px){.navigation .utility-work{font-size:12px;padding-inline:7px}.navigation .nav-link{font-size:12px}.navigation{gap:4px}}
+
+/* Short section context follows its longer list while both columns are visible.
+   Narrow or short/zoomed viewports keep the complete section in normal flow. */
+@media(min-width:761px) and (min-height:640px){.section-follow{position:sticky;top:120px;align-self:start}}
