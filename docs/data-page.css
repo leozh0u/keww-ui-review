@@ -36,7 +36,6 @@
 .data-page .data-difference{font-size:14px;color:var(--purple);margin-top:27px;line-height:1.5}
 .data-difference strong{font-weight:750}
 .data-page .data-sample-note{font-size:12px;line-height:1.55;max-width:50ch;margin-top:9px}
-.data-page .data-example-note{font-size:12px;line-height:1.6;max-width:90ch;padding-top:22px;margin:0;border-top:1px solid var(--border)}
 .data-questions{margin:0;border-top:1px solid var(--border)}
 .data-questions>div{padding-block:24px;border-bottom:1px solid var(--border)}
 .data-questions dt{font:700 20px/1.35 var(--font-heading);text-wrap:balance}
@@ -44,5 +43,29 @@
 .data-page .data-context-note{font-size:13px;line-height:1.65;max-width:60ch;margin-top:24px}
 .data-live{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 @media(max-width:1000px){.data-page .data-hero{padding-block:54px 42px}.data-page .data-example{margin-bottom:60px}.data-task-heading{align-items:flex-start;flex-direction:column;gap:9px}.data-task-detail{gap:32px}.data-task-detail h4{max-width:25ch}}
-@media(max-width:760px){.data-page .data-hero{grid-template-columns:1fr;gap:24px;padding-block:42px 36px}.data-page .data-hero h1{max-width:14ch}.data-page .data-example{padding:24px 20px;margin-bottom:48px}.data-example-heading{align-items:flex-start;gap:14px;flex-direction:column;padding-bottom:18px}.data-page .data-example-heading h2{font-size:21px}.data-task-choices{margin-block:20px}.data-task-choices button{font-size:12px;padding-inline:14px}.data-page .data-task-heading h3{font-size:23px}.data-task-heading{margin-bottom:28px}.data-task-detail{grid-template-columns:1fr;gap:34px}.data-timeline li{padding-bottom:20px}.data-task-detail h4{margin-bottom:20px}.data-page .data-example-note{font-size:11px}.data-duration dd{grid-template-columns:1fr 68px;gap:14px}.data-questions dt{font-size:20px}}
+@media(max-width:760px){.data-page .data-hero{grid-template-columns:1fr;gap:24px;padding-block:42px 36px}.data-page .data-hero h1{max-width:14ch}.data-page .data-example{padding:24px 20px;margin-bottom:48px}.data-example-heading{align-items:flex-start;gap:14px;flex-direction:column;padding-bottom:18px}.data-page .data-example-heading h2{font-size:21px}.data-task-choices{margin-block:20px}.data-task-choices button{font-size:12px;padding-inline:14px}.data-page .data-task-heading h3{font-size:23px}.data-task-heading{margin-bottom:28px}.data-task-detail{grid-template-columns:1fr;gap:34px}.data-timeline li{padding-bottom:20px}.data-task-detail h4{margin-bottom:20px}.data-duration dd{grid-template-columns:1fr 68px;gap:14px}.data-questions dt{font-size:20px}}
 @media(max-width:360px){.data-page .data-example{padding-inline:16px}.data-task-choices{gap:8px}.data-task-choices button{padding-inline:11px}}
+
+/* Keep the complete selected report together on a desktop opening screen. */
+@media(min-width:1001px){
+.data-opening{display:flow-root;min-height:calc(100svh - var(--header-height,80px))}
+.data-page .data-hero{padding-block:clamp(24px,4.2vh,44px) clamp(24px,3.2vh,36px);gap:clamp(32px,5vw,72px)}
+.data-page .data-hero h1{font-size:clamp(42px,4.2vw,60px);max-width:14ch}
+.data-page .data-hero .pp-intro{font-size:17px;line-height:1.55;max-width:54ch}
+.data-page .data-hero .pp-actions{margin-top:18px}
+.data-page .data-hero .button{min-height:48px;padding:12px 20px;font-size:14px;line-height:1.5}
+.data-page .data-example{padding-block:22px;margin-bottom:60px}
+.data-example-heading{padding-bottom:14px}
+.data-page .data-example-heading h2{font-size:20px}
+.data-task-choices{margin-block:16px}
+.data-task-panel{padding-block:0 2px}
+.data-task-heading{margin-bottom:20px}
+.data-page .data-task-heading h3{font-size:22px}
+.data-task-detail{gap:clamp(32px,5vw,64px)}
+.data-task-detail h4{margin-bottom:16px}
+.data-timeline li{padding-bottom:18px}
+.data-duration>div+div{margin-top:18px}
+.data-duration dt{margin-bottom:8px}
+.data-page .data-difference{margin-top:18px}
+.data-page .data-sample-note{margin-top:6px}
+}
