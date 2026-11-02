@@ -7,6 +7,8 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
   const beat = document.querySelector('[data-watch-beat]');
   const stage = beat?.querySelector('[data-watch-beat-stage]');
   if (!beat || !stage || typeof IntersectionObserver === 'undefined' || typeof ResizeObserver === 'undefined') return;
+  const interactive = beat.dataset.interactive === 'true';
+  const screenUI = beat.querySelector('[data-watch-ui]');
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
   const locale = document.documentElement.lang.startsWith('zh') ? 'zh' : document.documentElement.lang.startsWith('es') ? 'es' : 'en';
   const copy = {
@@ -133,7 +135,7 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
     if (motion.matches) { release(); return; }
     if (beat.dataset.active !== 'true') { cancelAnimationFrame(frame); frame = 0; return; }
     progress = clamp(Number(beat.dataset.progress) || 0);
-    setStep(beat.dataset.complete === 'true' ? 3 : progress > .28 ? 2 : 1);
+    setStep(beat.dataset.complete === 'true' ? 3 : interactive ? (beat.dataset.view === 'details' ? 2 : 1) : progress > .28 ? 2 : 1);
     target = progress;
     start();
     if (active && visible && !document.hidden) schedule();
@@ -161,10 +163,23 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
     schedule();
   }
   function pose(p = currentPose) {
+    if (interactive) {
+      watch.rotation.set(0, 0, 0); watch.position.set(0, .04, 0); watch.scale.setScalar(1);
+      return;
+    }
     // A single controlled product move: profile first, face forward for the task.
     watch.rotation.set(-.14 + Math.sin(p * Math.PI) * .1, -.7 + p * .95, -.22 + p * .14);
     watch.position.set(Math.sin(p * Math.PI) * .10, .04, Math.sin(p * Math.PI) * .12);
     watch.scale.setScalar(.91 + Math.sin(p * Math.PI) * .22);
+  }
+  function alignScreenUI() {
+    if (!screenUI) return;
+    watch.updateMatrixWorld(true); camera.updateMatrixWorld(true);
+    const topLeft = new THREE.Vector3(-1.0225, 1.275, .405).applyMatrix4(watch.matrixWorld).project(camera);
+    const bottomRight = new THREE.Vector3(1.0225, -1.275, .405).applyMatrix4(watch.matrixWorld).project(camera);
+    const width = stage.clientWidth, height = stage.clientHeight;
+    const values = {'--watch-ui-left':(topLeft.x+1)*width/2,'--watch-ui-top':(1-topLeft.y)*height/2,'--watch-ui-width':(bottomRight.x-topLeft.x)*width/2,'--watch-ui-height':(topLeft.y-bottomRight.y)*height/2};
+    for (const [key,value] of Object.entries(values)) stage.style.setProperty(key, `${value}px`);
   }
   function render() {
     frame = 0;
@@ -173,6 +188,7 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
     pose();
     try {
       renderer.render(scene, camera);
+      alignScreenUI();
       beat.classList.add('is-ready');
 
     } catch { fail(); }
@@ -188,6 +204,7 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
     active = false; cancelAnimationFrame(frame); frame = 0; beat.classList.remove('is-ready');
     const previous = renderer; renderer = null;
     beat.dataset.rendering = 'fallback';
+    for (const key of ['left','top','width','height']) stage.style.removeProperty(`--watch-ui-${key}`);
     previous?.domElement.removeEventListener('webglcontextlost', onContextLost);
     resizeObserver?.disconnect(); resizeObserver = null;
     for (const item of resources) item.dispose(); resources.clear();

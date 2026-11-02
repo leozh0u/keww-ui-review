@@ -52,6 +52,8 @@
 @media(max-width:640px){.tina-home .ks-product-capture img,.pp-product-capture img{aspect-ratio:390/844}.tina-home .ks-real-art .ks-tabs{gap:2px;padding-inline:8px}.tina-home .ks-real-art .ks-tabs button{flex:1;min-width:0;padding-inline:10px}.tina-home .ks-product-capture figcaption{display:block;padding:16px}.tina-home .ks-product-capture figcaption span{display:block;margin-top:10px}.tina-home .scroll-stage .concept-highlight p{font-size:15px;max-width:34ch}}
 
 /* Short marketing copy should read as a whole, without a stranded final phrase. */
+/* Match the business heading's native, section-bounded scroll following. */
+@media(min-width:761px){.tina-home .faq-heading{position:sticky;top:120px;align-self:start}}
 .tina-home :is(.kh-copy,.way,.staff-inner,.faq-heading,.end) p,
 .tina-home .kasheww-head p,
 .tina-home .scroll-stage .concept-highlight p,

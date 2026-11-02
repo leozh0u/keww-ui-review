@@ -1,0 +1,52 @@
+/* Detailed generic hardware and its rendered posters share the same framing. */
+.tina-home .tina-workflow .watch.watch-task-host{width:min(340px,calc(100% - 80px));height:560px;left:calc((100% - min(340px,calc(100% - 80px)))/2);top:22px;pointer-events:auto;transform-origin:50% 50%!important}
+.watch-task-host{font-family:var(--font-body,-apple-system,BlinkMacSystemFont,sans-serif);color:#28232f}
+.watch-task-host .watch-beat-stage{position:relative;width:100%;height:400px;isolation:isolate}
+.watch-task-host .watch-beat-poster{width:100%;height:100%;object-fit:contain;display:block;opacity:1}
+.watch-task-host .watch-beat-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:0}
+.watch-task-host.is-ready .watch-beat-poster{opacity:0;visibility:hidden}
+.watch-task-host.is-ready .watch-beat-canvas{opacity:1}
+.watch-task-host .watch-beat-poster-done{display:none}
+.watch-task-host[data-complete="true"] .watch-beat-poster-assigned{display:none}
+.watch-task-host[data-complete="true"] .watch-beat-poster-done{display:block}
+.watch-task-host .watch-beat-controls{display:flex;justify-content:center;min-height:44px;margin-top:-10px;position:relative;z-index:2}
+.watch-task-host .watch-beat-controls[hidden],.watch-task-host button[hidden]{display:none!important}
+.watch-task-host button{min-height:44px;min-width:min(140px,100%);padding:10px 20px;border:1px solid #65558f;border-radius:6px;background:#65558f;color:#fff;font:700 12px/1.4 var(--font-heading,sans-serif);cursor:pointer}
+.watch-task-host button:hover{background:#4e3c74}
+.watch-task-host button:focus-visible{outline:3px solid #d6b8f6;outline-offset:4px}
+.watch-task-host .watch-beat-record{border:1px solid #dfdce2;border-radius:9px;background:#fff;padding:14px 16px;margin-top:12px;box-shadow:0 10px 24px #32254112;font-size:11px;font-variant-numeric:tabular-nums}
+.watch-task-host .watch-beat-record>div{display:flex;align-items:baseline;justify-content:space-between;gap:14px}
+.watch-task-host .watch-beat-record strong{font-size:11px;font-weight:700}
+.watch-task-host .watch-beat-record small{font-size:8px;color:#6d637a}
+.watch-task-host .watch-beat-record p{font-size:12px;font-weight:600;margin:9px 0 5px;line-height:1.4}
+.watch-task-host .watch-beat-record>span{font-size:10px;color:#65558f}
+.watch-task-host[data-complete="true"] .watch-beat-record>span{color:#32704d}
+.watch-task-host .watch-beat-status{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+@media(max-width:760px){.tina-home #watches .tina-workflow .graphic .watch.watch-task-host{position:relative;inset:auto;width:min(340px,100%);height:auto;margin:15px auto 20px;transform:none!important}.watch-task-host .watch-beat-record{margin-inline:10px}.watch-task-host .watch-beat-stage{height:390px}}
+@media(prefers-reduced-motion:reduce){.watch-task-host .watch-beat-canvas{display:none!important}}
+
+/* The product page is a hands-on watch, rather than a second scroll movie. */
+.product-page .pp-watch-demo .watch-hands-on .watch-beat-stage{height:480px;--watch-ui-width:164px;--watch-ui-height:204.5px;--watch-ui-left:calc(50% - 82px);--watch-ui-top:calc(50% - 102.25px)}
+.watch-hands-on .watch-demo-ui{position:absolute;left:var(--watch-ui-left);top:var(--watch-ui-top);width:var(--watch-ui-width);height:var(--watch-ui-height);z-index:2;background:#101014;color:#fff;border-radius:22%;overflow:hidden;padding:9px 10px;display:flex;flex-direction:column;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;container-type:inline-size}
+.watch-hands-on .watch-demo-status{display:flex;align-items:center;justify-content:space-between;flex:none;font-size:9px;font-weight:600;line-height:12px;gap:5px;margin-bottom:6px;padding-inline:2px}
+.watch-hands-on .watch-demo-status svg{width:15px;height:9px;fill:none;stroke:#ded9e7;stroke-width:1.3}
+.watch-hands-on .watch-demo-view{display:flex;flex-direction:column;align-items:stretch;justify-content:center;gap:5px;flex:1;min-height:0}
+.watch-hands-on .watch-demo-view[hidden]{display:none!important}
+.watch-hands-on .watch-demo-view small{font-size:9px;line-height:1.3;color:#c9bedb}
+.watch-hands-on .watch-demo-view strong{font-size:clamp(12px,10cqi,14px);line-height:1.25;font-weight:650;letter-spacing:-.02em;text-wrap:balance}
+.watch-hands-on .watch-demo-view>span{font-size:10px;line-height:1.35;color:#d1cbdc;text-wrap:balance}
+.watch-hands-on .watch-demo-view button{display:block;min-height:44px;min-width:0;max-width:100%;padding:7px 4px;border:0;border-radius:9px;font:650 11px/1.2 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;white-space:nowrap;background:#65558f;color:#fff;margin-top:auto}
+.watch-hands-on .watch-demo-check{height:30px;width:30px;stroke:#83d58b;stroke-width:2;fill:none;flex:none;align-self:center}
+.watch-hands-on [data-watch-view="completed"]{text-align:center}
+.watch-hands-on .watch-demo-fallback{position:absolute;inset:0;pointer-events:none}
+.watch-hands-on.is-ready .watch-demo-fallback{display:none}
+.watch-hands-on .watch-demo-case{position:absolute;left:calc(50% - 90px);top:calc(50% - 110px);width:180px;height:220px;border-radius:43px;background:linear-gradient(100deg,#787c82,#d1d3d4 12%,#868a90 37%,#b3b6b9 82%,#5b5f65);box-shadow:inset 1px 0 1px #fff9,2px 3px 5px #1b1b212c}
+.watch-hands-on .watch-demo-case::after{content:"";position:absolute;inset:5px;border:4px solid #25262c;border-radius:38px;background:#101014}
+.watch-hands-on .watch-demo-band{position:absolute;width:114px;left:calc(50% - 57px);height:135px;background:linear-gradient(90deg,#181a1e,#2c2e32 24%,#202226 75%,#111216);border-radius:18px;box-shadow:inset 0 0 0 1px #4a4c4f}
+.watch-hands-on .watch-demo-band.top{bottom:calc(50% + 87px)}
+.watch-hands-on .watch-demo-band.top::after{content:"";position:absolute;inset:15px 8px auto;height:22px;border:5px solid #858a8f;border-radius:4px;box-shadow:0 26px 0 -5px #111216}
+.watch-hands-on .watch-demo-band.bottom{top:calc(50% + 87px);background:radial-gradient(ellipse at center,#090a0c 0 4px,#3a3d42 4.5px 5.5px,transparent 6px) center 15px / 24px 25px repeat-y,linear-gradient(90deg,#181a1e,#2c2e32 24%,#202226 75%,#111216)}
+.watch-hands-on .watch-demo-crown{position:absolute;top:calc(50% - 50px);left:calc(50% + 87px);height:28px;width:12px;border-radius:3px;background:repeating-linear-gradient(#bbbfc3 0 2px,#555a61 2px 3px);box-shadow:inset 0 0 0 1px #5b6065}
+.product-page .pp-watch-demo .watch-demo-hint{font-size:12px;line-height:1.5;text-align:center;margin:0 0 10px;max-width:none;color:#65558f;text-wrap:balance}
+.watch-hands-on .watch-demo-hint[hidden]{display:none}
+@media(max-width:760px){.product-page .pp-watch-demo .watch-hands-on .watch-beat-stage{height:460px}}
