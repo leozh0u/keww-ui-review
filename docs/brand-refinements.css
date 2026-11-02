@@ -65,3 +65,43 @@
  .tina-home .kasheww .kasheww-head h2{font-size:clamp(26px,7.8vw,40px);line-height:1.16;text-wrap:balance}
  .tina-home .kasheww .kasheww-head h2 br{display:none}
 }
+
+/* A quiet index of the offer completes the opening screen. */
+.tina-home .kh-features{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;padding-block:18px 24px}
+.tina-home .kh-features a{display:flex;justify-content:space-between;align-items:center;gap:12px;position:relative;padding:14px 0 0;border-top:1px solid #dfdce2;font:600 12px/1.5 var(--font-heading);color:#595762;min-width:0}
+.tina-home .kh-features a::before{content:"";position:absolute;left:0;right:0;top:-1px;height:2px;background:#65558f;transform:scaleX(var(--detail-progress,0));transform-origin:left}
+.tina-home .kh-features svg{width:18px;height:18px;flex:none;transition:transform 180ms ease-out}
+.tina-home .kh-features a:is(:hover,:focus-visible){color:#65558f}
+.tina-home .kh-features a:is(:hover,:focus-visible) svg{transform:translateX(3px)}
+.tina-home .kh-features a:focus-visible{outline:3px solid #65558f;outline-offset:5px}
+@media(min-width:1100px) and (min-height:620px){
+ .tina-home .kh-layout{min-height:calc(100svh - var(--header-height) - 86px);padding-block:18px}
+ .tina-home .kh-scene-frame{width:min(100%,720px,calc((100svh - var(--header-height) - 124px)*650/620))}
+}
+@media(max-width:760px){.tina-home .kh-features{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 24px;padding-block:8px 28px}.tina-home .kh-features a{font-size:11px;padding-top:10px}}
+
+/* Keep the task and its short payoff together at every reading size. */
+.product-page .pp-task-title{max-width:none}
+.product-page .pp-task-title>span{display:block;width:fit-content;white-space:nowrap}
+.product-page .pp-task-title{font-size:clamp(34px,4.2vw,64px)}
+.pp-watch-demo{min-width:0;display:grid;justify-items:center;background:#f6f6f8;border-radius:10px;padding:8px 20px 24px}
+.pp-watch-demo .watch-task-host{position:relative;width:min(100%,360px)}
+.pp-watch-demo .watch-beat-stage{height:420px}
+.product-page .pp-watch-demo .watch-beat-record p{font-size:14px;line-height:1.5;margin:10px 0 7px;color:#28232f}
+.product-page .pp-watch-demo .watch-beat-record>span{font-size:12px}
+.product-page .pp-watch-demo .watch-beat-record strong{font-size:13px}
+.product-page .pp-watch-demo .watch-beat-record small{font-size:10px;white-space:nowrap}
+@media(max-width:760px){.product-page .pp-task-title{font-size:clamp(30px,8.6vw,58px)}.pp-watch-demo{padding-inline:12px}.pp-watch-demo .watch-beat-stage{height:380px}}
+
+/* Small discoveries: task rules draw, the cashew turns, the crew stays in frame. */
+.tina-home .concept-highlight h3::after{content:"";display:block;height:2px;width:44px;background:#65558f;margin-top:16px;transform:scaleX(0);transform-origin:left;transition:transform 400ms cubic-bezier(.16,1,.3,1)}
+.tina-home .concept-highlight.is-active h3::after{transform:scaleX(1)}
+.tina-home .way h3{width:fit-content;position:relative;padding-bottom:9px}
+.tina-home .way h3::after{content:"";position:absolute;inset:auto 0 0;height:2px;background:#65558f;transform:scaleX(var(--detail-progress,0));transform-origin:left}
+.tina-home .ks-product-mark{transform:rotate(var(--cashew-turn,0deg));transform-origin:50% 60%}
+.tina-home .staff-images img{transform:translateY(var(--crew-drift,0px)) scale(1.07)}
+@media(prefers-reduced-motion:reduce){
+ .tina-home .kh-features a::before,.tina-home .way h3::after,.tina-home .concept-highlight h3::after{transform:scaleX(1)}
+ .tina-home .ks-product-mark,.tina-home .staff-images img{transform:none}
+ .tina-home .kh-features svg,.tina-home .concept-highlight h3::after{transition:none}
+}

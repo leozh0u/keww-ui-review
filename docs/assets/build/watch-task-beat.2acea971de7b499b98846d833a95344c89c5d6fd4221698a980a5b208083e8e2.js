@@ -1,7 +1,7 @@
 /* Local sample state and lazy loading only. No API, telemetry or employee records. */
 (() => {
   const beat = document.querySelector('[data-watch-beat]');
-  const root = beat?.closest('.tina-home');
+  const root = beat?.closest('.tina-home, .pp-watches');
   if (!beat || !root) return;
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
   const phone = matchMedia('(max-width:760px)');
@@ -43,11 +43,49 @@
   });
   const observer = typeof IntersectionObserver === 'function' ? new IntersectionObserver(entries => { near = entries.some(entry => entry.isIntersecting); load(); }, {rootMargin:'200px 0px'}) : null;
   observer?.observe(beat);
+  // The dedicated page uses natural scroll, without a pinned scene or spacer.
+  const standalone = root.classList.contains('pp-watches');
+  let scrollFrame = 0, scrollTime = 0, visible = false;
+  const hero = standalone ? root.querySelector('.pp-hero') : null;
+  function updateScroll(now) {
+    scrollFrame = 0;
+    if (!standalone || destroyed || document.hidden || !visible) return;
+    const rect = hero.getBoundingClientRect();
+    const header = document.querySelector('.site-header').getBoundingClientRect().height;
+    const target = motion.matches ? 0 : Math.max(0, Math.min(1, (header - rect.top) / Math.max(240, rect.height * .65)));
+    const blend = !scrollTime || motion.matches ? 1 : 1 - Math.exp(-Math.min(64, now - scrollTime) / 65);
+    scrollTime = now;
+    progress += (target - progress) * blend;
+    if (Math.abs(target - progress) < .0005) progress = target;
+    active = true;
+    sync();
+    if (progress !== target) scheduleScroll();
+  }
+  function scheduleScroll() {
+    if (standalone && visible && !destroyed && !document.hidden && !scrollFrame) scrollFrame = requestAnimationFrame(updateScroll);
+  }
+  const visibility = standalone && typeof IntersectionObserver === 'function' ? new IntersectionObserver(entries => {
+    visible = entries.some(entry => entry.isIntersecting);
+    active = visible && !document.hidden;
+    if (!visible) { cancelAnimationFrame(scrollFrame); scrollFrame = 0; scrollTime = 0; }
+    sync(); scheduleScroll();
+  }) : null;
+  visibility?.observe(beat);
+  if (standalone) {
+    addEventListener('scroll', scheduleScroll, {passive:true});
+    addEventListener('resize', scheduleScroll, {passive:true});
+    globalThis.visualViewport?.addEventListener('resize', scheduleScroll, {passive:true});
+    document.addEventListener('visibilitychange', () => {
+      active = visible && !document.hidden;
+      if (document.hidden) { cancelAnimationFrame(scrollFrame); scrollFrame = 0; scrollTime = 0; }
+      sync(); scheduleScroll();
+    });
+  }
   completeButton.addEventListener('click', () => { manual = true; sync(true); resetButton.focus(); });
   resetButton.addEventListener('click', () => { manual = false; sync(true); completeButton.focus(); });
-  motion.addEventListener('change', () => { sync(); });
-  addEventListener('pagehide', () => { destroyed = true; observer?.disconnect(); });
-  addEventListener('pageshow', event => { if (event.persisted) { destroyed = false; observer?.observe(beat); sync(); } });
+  motion.addEventListener('change', () => { sync(); scheduleScroll(); });
+  addEventListener('pagehide', () => { destroyed = true; observer?.disconnect(); visibility?.disconnect(); cancelAnimationFrame(scrollFrame); scrollFrame = 0; });
+  addEventListener('pageshow', event => { if (event.persisted) { destroyed = false; observer?.observe(beat); visibility?.observe(beat); sync(); scheduleScroll(); } });
   beat.querySelector('[data-watch-beat-controls]').hidden = false;
   sync();
   root.dispatchEvent(new CustomEvent('keww-watch-ready'));
