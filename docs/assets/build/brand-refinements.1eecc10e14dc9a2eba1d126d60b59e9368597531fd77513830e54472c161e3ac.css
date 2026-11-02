@@ -34,7 +34,7 @@
 }
 
 /* Product captures retain Kasheww's actual application shell and data layout. */
-.tina-home .ks-real-art{padding:0;border:1px solid #dfdce2;border-radius:12px;background:#fff;overflow:hidden;box-shadow:0 16px 32px #39264f12}
+.tina-home .ks-real-art{margin-top:clamp(28px,3.2vw,44px);padding:0;border:1px solid #dfdce2;border-radius:12px;background:#fff;overflow:hidden;box-shadow:0 16px 32px #39264f12}
 .tina-home .ks-real-art .ks-tabs{display:flex;gap:8px;margin:0;padding:10px 18px 0;border-bottom:1px solid #dfdce2;background:#f7f6f9}
 .tina-home .ks-real-art .ks-tabs button{min-height:44px;min-width:100px;font-size:13px;padding:10px 14px;border-radius:5px 5px 0 0;white-space:nowrap}
 .tina-home .ks-real-art .ks-panel{display:block;padding:0}

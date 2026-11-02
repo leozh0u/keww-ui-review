@@ -96,6 +96,8 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
   }
   function drawScreen(step) {
     ctx.clearRect(0, 0, 512, 640); pill(ctx, 0, 0, 512, 640, 72, '#101014');
+    // The product page has a native, editable screen over this same black glass.
+    if (interactive) { if (texture) texture.needsUpdate = true; return; }
     text(copy.time, 42, 64, 35, '#ffffff', 700);
     // Familiar watch indicators, never presented as live device status.
     ctx.strokeStyle = '#c8c5d0'; ctx.lineWidth = 3; ctx.strokeRect(405, 40, 44, 20); ctx.fillStyle = '#c8c5d0'; ctx.fillRect(450, 46, 4, 8); ctx.fillRect(409, 44, 32, 12);
@@ -160,6 +162,9 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
     camera.left = -range * aspect / 2; camera.right = range * aspect / 2;
     camera.top = range / 2; camera.bottom = -range / 2; camera.updateProjectionMatrix();
     renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 2)); renderer.setSize(width, height, false);
+    // Resize clears WebGL buffers. Keep the matching hardware frame visible
+    // until the resized canvas has actually painted, with the same native face.
+    if (interactive) { beat.classList.remove('is-ready'); alignScreenUI(); }
     schedule();
   }
   function pose(p = currentPose) {

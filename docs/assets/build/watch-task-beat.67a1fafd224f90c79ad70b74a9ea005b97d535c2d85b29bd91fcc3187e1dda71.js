@@ -58,7 +58,6 @@
 (() => {
   const beat = document.querySelector('[data-watch-beat][data-interactive="true"]');
   if (!beat) return;
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const labels = {
     en:{assigned:'Assigned',completed:'Completed',viewed:'Task details opened.',done:'Cocktail-area setup completed. The manager record is updated.',reset:'Cocktail-area setup reset to assigned.'},
     es:{assigned:'Asignada',completed:'Terminada',viewed:'Detalles de la tarea abiertos.',done:'Zona de cócteles preparada. Registro del responsable actualizado.',reset:'La tarea vuelve a estar asignada.'},
@@ -69,35 +68,17 @@
   const again = beat.querySelector('[data-watch-again]');
   const record = beat.querySelector('[data-watch-beat-record]');
   const status = beat.querySelector('[data-watch-beat-status]');
-  let view = 'assigned', loaded = false, visible = false, near = false, stopped = false;
-  function load() {
-    const source = document.querySelector('meta[name="watch-beat-script"]')?.content;
-    if (loaded || !near || stopped || reduced.matches || navigator.connection?.saveData || !source) return;
-    loaded = true;
-    const script = document.createElement('script'); script.src = source; script.defer = true;
-    script.onerror = () => { beat.dataset.rendering = 'fallback'; };
-    document.body.append(script);
-  }
+  let view = 'assigned';
   function sync() {
-    beat.dataset.active = String(visible && !stopped && !document.hidden);
     beat.dataset.complete = String(view === 'completed');
     beat.dataset.view = view;
     record.textContent = view === 'completed' ? labels.completed : labels.assigned;
     beat.querySelectorAll('[data-watch-view]').forEach(panel => { panel.hidden = panel.dataset.watchView !== view; });
-    beat.dispatchEvent(new CustomEvent('watch-beat:update',{detail:{active:visible,progress:0,done:view==='completed'}}));
-    load();
   }
   function select(next, message, focus) { view = next; sync(); status.textContent = message; focus.focus({preventScroll:true}); }
   open.addEventListener('click', () => select('details',labels.viewed,finish));
   finish.addEventListener('click', () => select('completed',labels.done,again));
   again.addEventListener('click', () => select('assigned',labels.reset,open));
-  const observer = typeof IntersectionObserver === 'function' ? new IntersectionObserver(entries => { visible = entries.some(entry=>entry.isIntersecting); sync(); }) : null;
-  const preload = typeof IntersectionObserver === 'function' ? new IntersectionObserver(entries => { near = entries.some(entry=>entry.isIntersecting); load(); },{rootMargin:'200px'}) : null;
-  observer?.observe(beat); preload?.observe(beat);
-  reduced.addEventListener('change',sync);
-  document.addEventListener('visibilitychange',sync);
-  addEventListener('pagehide',()=>{stopped=true;observer?.disconnect();preload?.disconnect();sync();});
-  addEventListener('pageshow',event=>{if(event.persisted){stopped=false;observer?.observe(beat);preload?.observe(beat);sync();}});
   open.hidden = false; beat.querySelector('[data-watch-hint]').hidden = false;
   sync();
 })();
