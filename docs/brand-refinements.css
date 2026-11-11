@@ -70,17 +70,16 @@
 
 /* Service destinations explain the offer; the in-graphic controls demonstrate its workflow. */
 .tina-home .kh-features{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;padding-block:12px 22px}
-.tina-home .kh-features a{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0;min-height:44px;font:600 13px/1.5 var(--font-heading);color:#595762;min-width:0}
-.tina-home .kh-features svg{width:18px;height:18px;flex:none;transition:transform 180ms ease-out}
+.tina-home .kh-features a{display:flex;align-items:center;position:relative;padding:14px 0 8px;border-top:1px solid #dfdce2;min-height:44px;font:600 13px/1.5 var(--font-heading);color:#595762;min-width:0}
+.tina-home .kh-features a::before{content:"";position:absolute;left:0;right:0;top:-1px;height:2px;background:#65558f;transform:scaleX(var(--detail-progress,0));transform-origin:left;pointer-events:none}
 .tina-home .kh-features a:is(:hover,:focus-visible){color:#65558f;text-decoration:underline;text-underline-offset:5px}
-.tina-home .kh-features a:is(:hover,:focus-visible) svg{transform:translateX(3px)}
 .tina-home .kh-features a:focus-visible{outline:3px solid #65558f;outline-offset:4px;border-radius:3px}
 @media(min-width:1100px) and (min-height:620px){
  .tina-home .kh-layout{min-height:calc(100svh - var(--header-height) - 78px);padding-block:18px}
  .tina-home .kh-scene-frame{width:min(100%,720px,calc((100svh - var(--header-height) - 114px)*650/620))}
 }
 @media(max-width:760px){.tina-home .kh-features{grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 24px;padding-block:8px 24px}.tina-home .kh-features a{font-size:12px}}
-@media(prefers-reduced-motion:reduce){.tina-home .kh-features svg{transition:none}}
+@media(prefers-reduced-motion:reduce){.tina-home .kh-features a::before{transform:scaleX(1)}}
 
 /* Keep the task and its short payoff together at every reading size. */
 .product-page .pp-task-title{max-width:none}
