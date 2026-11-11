@@ -68,19 +68,19 @@
  .tina-home .kasheww .kasheww-head h2 br{display:none}
 }
 
-/* A quiet index of the offer completes the opening screen. */
-.tina-home .kh-features{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;padding-block:18px 24px}
-.tina-home .kh-features a{display:flex;justify-content:space-between;align-items:center;gap:12px;position:relative;padding:14px 0 0;border-top:1px solid #dfdce2;font:600 12px/1.5 var(--font-heading);color:#595762;min-width:0}
-.tina-home .kh-features a::before{content:"";position:absolute;left:0;right:0;top:-1px;height:2px;background:#65558f;transform:scaleX(var(--detail-progress,0));transform-origin:left}
+/* Service destinations explain the offer; the in-graphic controls demonstrate its workflow. */
+.tina-home .kh-features{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;padding-block:12px 22px}
+.tina-home .kh-features a{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0;min-height:44px;font:600 13px/1.5 var(--font-heading);color:#595762;min-width:0}
 .tina-home .kh-features svg{width:18px;height:18px;flex:none;transition:transform 180ms ease-out}
-.tina-home .kh-features a:is(:hover,:focus-visible){color:#65558f}
+.tina-home .kh-features a:is(:hover,:focus-visible){color:#65558f;text-decoration:underline;text-underline-offset:5px}
 .tina-home .kh-features a:is(:hover,:focus-visible) svg{transform:translateX(3px)}
-.tina-home .kh-features a:focus-visible{outline:3px solid #65558f;outline-offset:5px}
+.tina-home .kh-features a:focus-visible{outline:3px solid #65558f;outline-offset:4px;border-radius:3px}
 @media(min-width:1100px) and (min-height:620px){
- .tina-home .kh-layout{min-height:calc(100svh - var(--header-height) - 86px);padding-block:18px}
- .tina-home .kh-scene-frame{width:min(100%,720px,calc((100svh - var(--header-height) - 124px)*650/620))}
+ .tina-home .kh-layout{min-height:calc(100svh - var(--header-height) - 78px);padding-block:18px}
+ .tina-home .kh-scene-frame{width:min(100%,720px,calc((100svh - var(--header-height) - 114px)*650/620))}
 }
-@media(max-width:760px){.tina-home .kh-features{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 24px;padding-block:8px 28px}.tina-home .kh-features a{font-size:11px;padding-top:10px}}
+@media(max-width:760px){.tina-home .kh-features{grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 24px;padding-block:8px 24px}.tina-home .kh-features a{font-size:12px}}
+@media(prefers-reduced-motion:reduce){.tina-home .kh-features svg{transition:none}}
 
 /* Keep the task and its short payoff together at every reading size. */
 .product-page .pp-task-title{max-width:none}
@@ -103,9 +103,9 @@
 .tina-home .ks-product-mark{transform:rotate(var(--cashew-turn,0deg));transform-origin:50% 60%}
 .tina-home .staff-images img{transform:translateY(var(--crew-drift,0px)) scale(1.07)}
 @media(prefers-reduced-motion:reduce){
- .tina-home .kh-features a::before,.tina-home .way h3::after,.tina-home .concept-highlight h3::after{transform:scaleX(1)}
+ .tina-home .way h3::after,.tina-home .concept-highlight h3::after{transform:scaleX(1)}
  .tina-home .ks-product-mark,.tina-home .staff-images img{transform:none}
- .tina-home .kh-features svg,.tina-home .concept-highlight h3::after{transition:none}
+ .tina-home .concept-highlight h3::after{transition:none}
 }
 
 /* A small homepage introduction routes to the complete Kasheww product tour. */
@@ -121,3 +121,36 @@
 .tina-home .ks-summary-preview>span{display:flex;align-items:center;justify-content:space-between;padding:15px 18px;border-top:1px solid #dfdce2;font:600 12px/1.5 var(--font-heading);min-height:48px}
 .tina-home .ks-summary-preview:hover>span{background:#f3effc}
 @media(max-width:760px){.tina-home .kasheww-summary{padding-block:48px}.tina-home .ks-summary-grid{grid-template-columns:minmax(0,1fr);gap:28px}.tina-home .ks-summary-copy h2{font-size:30px;max-width:21ch}.tina-home .ks-summary-preview{max-width:460px}}
+
+/* A compact product composition, with real application detail rather than a full-page thumbnail. */
+.tina-home .ks-summary-grid{grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(36px,6vw,86px)}
+.tina-home .ks-summary-tools{list-style:none;display:flex;flex-wrap:wrap;gap:8px 18px;padding:0;margin:0 0 20px;color:#65558f;font:600 12px/1.5 var(--font-heading)}
+.tina-home .ks-summary-tools li{padding-bottom:6px;border-bottom:1px solid #c8bed9}
+.tina-home .ks-summary-preview{border:0;border-radius:0;background:transparent;box-shadow:none;overflow:visible}
+.tina-home .ks-summary-composition{position:relative;isolation:isolate;padding:0 0 42px 24px}
+.tina-home .ks-summary-window{border:1px solid #d6cfdf;border-radius:10px;overflow:hidden;background:#fff;box-shadow:0 18px 32px #39264f12;transform:rotate(-2deg)}
+.tina-home .ks-summary-window img{aspect-ratio:1.64;object-fit:cover;object-position:top}
+.tina-home .ks-summary-menu{position:absolute;right:-12px;bottom:0;width:61%;border:1px solid #d6cfdf;background:#fff;box-shadow:0 12px 24px #39264f17;border-radius:8px;overflow:hidden;transform:rotate(2deg)}
+.tina-home .ks-summary-menu>span{display:block;padding:9px 13px;color:#65558f;font:700 11px/1.4 var(--font-heading);border-bottom:1px solid #dfdce2}
+.tina-home .ks-summary-menu img{aspect-ratio:2.6;object-fit:cover;object-position:50% 40%}
+.tina-home .ks-summary-preview>.ks-summary-caption{border:0;padding:14px 0 0 24px;font-size:13px;background:transparent}
+.tina-home .ks-summary-preview:is(:hover,:focus-visible)>.ks-summary-caption{text-decoration:underline;text-underline-offset:5px;background:transparent}
+.tina-home .ks-summary-preview:focus-visible{outline:3px solid #65558f;outline-offset:8px;border-radius:6px}
+@media(max-width:760px){
+ .tina-home .ks-summary-grid{grid-template-columns:minmax(0,1fr);gap:32px}
+ .tina-home .ks-summary-preview{width:100%;max-width:540px;margin-inline:auto}
+ .tina-home .ks-summary-composition{padding-left:6px;padding-right:10px;padding-bottom:34px}
+ .tina-home .ks-summary-menu{right:0}
+ .tina-home .ks-summary-preview>.ks-summary-caption{padding-left:6px}
+}
+
+/* A complete image-and-copy closing composition; no narrow background-photo strip. */
+.tina-home .end{display:grid;grid-template-columns:1.1fr .9fr;gap:0;padding:0;min-height:0;background:#332441;align-items:stretch}
+.tina-home .end:before,.tina-home .end:after{content:none}
+.tina-home .end>.end-copy{max-width:none;padding:clamp(32px,4vw,58px);display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:22px}
+.tina-home .end .section-title{margin:0;max-width:17ch}
+.tina-home .end p{margin:0;max-width:36ch}
+.tina-home .end .button-primary{margin:0;font-size:14px;min-height:48px;padding:14px 20px;white-space:nowrap}
+.tina-home .end .end-photo{width:100%;height:100%;max-height:400px;min-height:340px;object-fit:cover;object-position:50% 35%;display:block}
+
+@media(max-width:760px){.tina-home .end{grid-template-columns:minmax(0,1fr);padding:0;gap:0}.tina-home .end>.end-copy{padding:32px 25px}.tina-home .end .end-photo{min-height:0;height:260px;max-height:none;object-position:50% 32%}}

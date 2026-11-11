@@ -13,3 +13,5 @@
 .pp-kasheww .ks-product-capture figcaption>span{font-size:10px;line-height:1.5;color:#6d637a}
 .pp-kasheww .ks-panel-view:not([hidden])+.ks-panel-view:not([hidden]){border-top:1px solid #dfdce2}
 @media(max-width:760px){.pp-kasheww .ks-product-capture figcaption{min-height:130px;padding:18px}}
+
+.pp-kasheww .ks-real-art{scroll-margin-top:110px}

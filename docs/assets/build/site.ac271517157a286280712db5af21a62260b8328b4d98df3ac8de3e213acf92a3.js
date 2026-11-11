@@ -68,7 +68,7 @@ document.addEventListener?.('click', event => {
   if (!home || typeof IntersectionObserver !== 'function') return;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const specs = [
-    ...[...home.querySelectorAll('.kh-features a, .way')].map((element, index) => ({element, property:'--detail-progress', value:p => String(Math.max(0, Math.min(1, p * 2.8 - (index % 4) * .12)))})),
+    ...[...home.querySelectorAll('.way')].map((element, index) => ({element, property:'--detail-progress', value:p => String(Math.max(0, Math.min(1, p * 2.8 - (index % 4) * .12)))})),
     ...[...home.querySelectorAll('.ks-product-mark')].map(element => ({element, property:'--cashew-turn', value:p => `${Math.sin(p * Math.PI * 2) * 13 * Math.sin(p * Math.PI)}deg`})),
     ...[...home.querySelectorAll('.staff-images img')].map(element => ({element, property:'--crew-drift', value:p => `${(p - .5) * 16}px`}))
   ];
